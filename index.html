@@ -3,40 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="张叔阳（AI 应用工程师）作品集 —— LLM/Agent、视觉 SLAM、数据工程，均为可复现的真实项目。">
-<title>张叔阳 · AI 应用工程师作品集</title>
+<meta name="description" content="张叔阳（AI 应用工程师）作品集 · Afonso Zhang — AI Application Engineer portfolio. LLM/Agent、视觉 SLAM、数据工程，均为可复现的真实项目。">
+<title>张叔阳 · AI 应用工程师作品集 | Afonso Zhang</title>
 <style>
   :root {
-    /* light — cool graphite neutrals + single amber signal */
-    --paper:  #E7E8EB;
-    --panel:  #F1F2F4;
-    --panel-2:#FAFBFC;
-    --ink:    #171A1F;
-    --ink-soft:#414852;
-    --slate:  #6A727E;
-    --line:   #CDD1D7;
-    --line-soft:#DBDEE3;
-    --accent: #A85818;
-    --accent-bright:#C86E24;
-    --trace:  #48627A;
-
+    --paper:  #E7E8EB; --panel:  #F1F2F4; --panel-2:#FAFBFC;
+    --ink:    #171A1F; --ink-soft:#414852; --slate:  #6A727E;
+    --line:   #CDD1D7; --line-soft:#DBDEE3;
+    --accent: #A85818; --accent-bright:#C86E24; --trace:  #48627A;
     --maxw: 1060px;
     --sans: "PingFang SC","Noto Sans SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",system-ui,-apple-system,"Segoe UI",sans-serif;
     --mono: ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,"Liberation Mono",monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper:  #0E1014;
-      --panel:  #15181E;
-      --panel-2:#1B1F26;
-      --ink:    #E8EAED;
-      --ink-soft:#B3BAC4;
-      --slate:  #808A97;
-      --line:   #262B33;
-      --line-soft:#1F242B;
-      --accent: #E0913F;
-      --accent-bright:#EDA658;
-      --trace:  #6E8CA6;
+      --paper:#0E1014; --panel:#15181E; --panel-2:#1B1F26;
+      --ink:#E8EAED; --ink-soft:#B3BAC4; --slate:#808A97;
+      --line:#262B33; --line-soft:#1F242B;
+      --accent:#E0913F; --accent-bright:#EDA658; --trace:#6E8CA6;
     }
   }
   :root[data-theme="light"] {
@@ -49,62 +33,41 @@
   }
 
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0; background: var(--paper); color: var(--ink);
-    font-family: var(--sans); line-height: 1.72;
-    font-size: 16px; letter-spacing: .005em;
+    font-family: var(--sans); line-height: 1.72; font-size: 16px; letter-spacing: .005em;
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { color: var(--accent-bright); }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
-  /* ---- eyebrow / mono utility layer ---- */
-  .eyebrow {
-    font-family: var(--mono); font-size: .70rem; letter-spacing: .22em;
-    text-transform: uppercase; color: var(--slate); font-weight: 500;
-  }
-  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .eyebrow { font-family: var(--mono); font-size: .70rem; letter-spacing: .22em; text-transform: uppercase; color: var(--slate); font-weight: 500; }
+  html[lang="en"] .eyebrow { letter-spacing: .18em; }
 
-  /* ---- top bar ---- */
-  header.bar {
-    position: sticky; top: 0; z-index: 20;
-    background: color-mix(in srgb, var(--paper) 86%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line-soft);
-  }
+  header.bar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line-soft); }
   .bar-in { display: flex; align-items: center; justify-content: space-between; height: 56px; }
   .bar-name { font-weight: 700; letter-spacing: .02em; font-size: .95rem; }
   .bar-name span { color: var(--slate); font-family: var(--mono); font-weight: 500; font-size: .8rem; margin-left: .5rem; }
-  .bar-nav { display: flex; gap: 22px; }
+  .bar-right { display: flex; align-items: center; gap: 20px; }
+  .bar-nav { display: flex; gap: 20px; }
   .bar-nav a { font-family: var(--mono); font-size: .78rem; color: var(--ink-soft); letter-spacing: .04em; }
   .bar-nav a:hover { color: var(--accent); }
+  .langbtn { font-family: var(--mono); font-size: .74rem; letter-spacing: .06em; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 5px 11px; cursor: pointer; transition: border-color .16s, color .16s; }
+  .langbtn:hover { border-color: var(--accent); color: var(--accent); }
   @media (max-width: 640px){ .bar-nav { display: none; } }
 
-  /* ---- hero ---- */
   .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line-soft); }
   #graph { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .9; pointer-events: none; }
   .hero-in { position: relative; z-index: 2; padding: 92px 0 76px; }
-  .hero h1 {
-    font-size: clamp(2.3rem, 6.2vw, 4.15rem); line-height: 1.08; margin: 18px 0 0;
-    font-weight: 800; letter-spacing: -.01em; text-wrap: balance; max-width: 16ch;
-  }
+  .hero h1 { font-size: clamp(2.3rem, 6.2vw, 4.15rem); line-height: 1.08; margin: 18px 0 0; font-weight: 800; letter-spacing: -.01em; text-wrap: balance; max-width: 16ch; }
   .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero .lede {
-    margin: 26px 0 0; max-width: 52ch; font-size: clamp(1.02rem,2.2vw,1.18rem);
-    color: var(--ink-soft); line-height: 1.7;
-  }
+  .hero .lede { margin: 26px 0 0; max-width: 54ch; font-size: clamp(1.02rem,2.2vw,1.18rem); color: var(--ink-soft); line-height: 1.7; }
   .hero .lede b { color: var(--ink); font-weight: 600; }
 
-  .metrics {
-    display: flex; flex-wrap: wrap; gap: 0; margin-top: 44px;
-    border: 1px solid var(--line); border-radius: 3px; overflow: hidden;
-    background: color-mix(in srgb, var(--panel) 70%, transparent);
-    width: fit-content; max-width: 100%;
-  }
+  .metrics { display: flex; flex-wrap: wrap; gap: 0; margin-top: 44px; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; background: color-mix(in srgb, var(--panel) 70%, transparent); width: fit-content; max-width: 100%; }
   .metric { padding: 14px 22px 12px; border-right: 1px solid var(--line); }
   .metric:last-child { border-right: 0; }
   .metric .n { font-family: var(--mono); font-size: 1.3rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
@@ -112,14 +75,12 @@
   .metric .k { font-size: .74rem; color: var(--slate); margin-top: 2px; letter-spacing: .02em; }
   @media (max-width:560px){ .metric { flex: 1 0 46%; border-bottom: 1px solid var(--line);} }
 
-  /* ---- section frame ---- */
   section { padding: 74px 0; border-bottom: 1px solid var(--line-soft); }
   .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 38px; }
   .sec-head .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; transform: translateY(-1px); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
   .sec-head h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); font-weight: 750; margin: 0; letter-spacing: -.01em; }
   .sec-head .idx { margin-left: auto; }
 
-  /* ---- 打法 pipeline ---- */
   .play { display: grid; gap: 0; position: relative; }
   .play::before { content:""; position: absolute; left: 5px; top: 12px; bottom: 12px; width: 1px; background: linear-gradient(var(--accent), var(--trace)); opacity:.5; }
   .step { display: grid; grid-template-columns: 44px 1fr; padding: 18px 0; }
@@ -127,20 +88,16 @@
   .step .node { width: 11px; height: 11px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); margin-top: 7px; position: relative; z-index: 1; }
   .step h3 { margin: 0 0 6px; font-size: 1.12rem; font-weight: 700; }
   .step h3 small { font-family: var(--mono); color: var(--slate); font-weight: 500; font-size: .72rem; letter-spacing: .08em; margin-left: 10px; text-transform: uppercase; }
-  .step p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
+  .step p { margin: 0; color: var(--ink-soft); max-width: 64ch; }
   .step p b { color: var(--ink); font-weight: 600; }
 
-  /* ---- projects ---- */
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   @media (max-width: 760px){ .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
-    padding: 24px 24px 22px; display: flex; flex-direction: column;
-    position: relative; transition: border-color .18s, transform .18s;
-  }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 24px 24px 22px; display: flex; flex-direction: column; position: relative; transition: border-color .18s; }
   .card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
-  .card .code { font-family: var(--mono); font-size: .72rem; color: var(--accent); letter-spacing: .08em; }
-  .card .tag { font-family: var(--mono); font-size: .68rem; color: var(--slate); letter-spacing: .08em; text-transform: uppercase; }
+  .card .chd { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .card .code { font-family: var(--mono); font-size: .72rem; color: var(--accent); letter-spacing: .08em; white-space: nowrap; }
+  .card .tag { font-family: var(--mono); font-size: .68rem; color: var(--slate); letter-spacing: .08em; text-transform: uppercase; text-align: right; }
   .card h3 { margin: 10px 0 4px; font-size: 1.22rem; font-weight: 750; letter-spacing: -.005em; }
   .card .desc { margin: 6px 0 16px; color: var(--ink-soft); font-size: .95rem; line-height: 1.66; }
   .card ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 7px; }
@@ -153,12 +110,10 @@
   .bridge { font-size: .78rem; color: var(--slate); line-height: 1.4; }
   .repo { font-family: var(--mono); font-size: .76rem; white-space: nowrap; }
   .repo.na { color: var(--slate); }
-
   .card.wide { grid-column: 1 / -1; }
   .card.wide .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 26px; }
   @media (max-width: 620px){ .card.wide .cols { grid-template-columns: 1fr; } }
 
-  /* ---- skills ---- */
   .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
   @media (max-width: 680px){ .skills { grid-template-columns: 1fr; } }
   .skill { background: var(--panel); padding: 20px 22px; }
@@ -168,7 +123,6 @@
   .skill .chips span::after { content:"·"; color: var(--line); margin-left: 7px; }
   .skill .chips span:last-child::after { content:""; }
 
-  /* ---- background ---- */
   .bg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
   @media (max-width: 680px){ .bg-grid { grid-template-columns: 1fr; gap: 26px; } }
   .bg-col h4 { font-family: var(--mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); margin: 0 0 16px; font-weight: 500; }
@@ -178,18 +132,12 @@
   .item .m { font-family: var(--mono); font-size: .74rem; color: var(--slate); margin-top: 2px; }
   .item .d { font-size: .88rem; color: var(--ink-soft); margin-top: 4px; }
 
-  /* ---- contact ---- */
   .contact { padding: 78px 0 92px; border-bottom: 0; }
-  .contact h2 { font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 800; letter-spacing: -.015em; margin: 0 0 8px; max-width: 20ch; text-wrap: balance; }
-  .contact p.sub { color: var(--ink-soft); margin: 0 0 30px; max-width: 46ch; }
+  .contact h2 { font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 800; letter-spacing: -.015em; margin: 0 0 8px; max-width: 22ch; text-wrap: balance; }
+  .contact p.sub { color: var(--ink-soft); margin: 0 0 30px; max-width: 48ch; }
   .links { display: flex; flex-wrap: wrap; gap: 12px; }
-  .links a, .links .li {
-    font-family: var(--mono); font-size: .84rem; display: inline-flex; align-items: center; gap: 9px;
-    border: 1px solid var(--line); background: var(--panel); border-radius: 4px; padding: 11px 16px; color: var(--ink);
-    transition: border-color .16s, color .16s;
-  }
+  .links a { font-family: var(--mono); font-size: .84rem; display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); background: var(--panel); border-radius: 4px; padding: 11px 16px; color: var(--ink); transition: border-color .16s, color .16s; }
   .links a:hover { border-color: var(--accent); color: var(--accent); }
-  .links .li { color: var(--ink-soft); }
   .links .k { color: var(--slate); }
   .region { margin-top: 26px; font-size: .84rem; color: var(--slate); }
   .region b { color: var(--ink-soft); font-weight: 600; }
@@ -197,7 +145,7 @@
   footer { padding: 26px 0 40px; }
   footer .fin { font-family: var(--mono); font-size: .72rem; color: var(--slate); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
@@ -205,322 +153,271 @@
 <header class="bar">
   <div class="wrap bar-in">
     <div class="bar-name">张叔阳 <span>AI Application Engineer</span></div>
-    <nav class="bar-nav">
-      <a href="#play">打法</a>
-      <a href="#work">项目</a>
-      <a href="#skills">能力</a>
-      <a href="#bg">背景</a>
-      <a href="#contact">联系</a>
-    </nav>
+    <div class="bar-right">
+      <nav class="bar-nav">
+        <a href="#play" data-i18n="nav.play">打法</a>
+        <a href="#work" data-i18n="nav.work">项目</a>
+        <a href="#skills" data-i18n="nav.skills">能力</a>
+        <a href="#bg" data-i18n="nav.bg">背景</a>
+        <a href="#contact" data-i18n="nav.contact">联系</a>
+      </nav>
+      <button class="langbtn" id="langBtn" type="button" aria-label="Switch language">EN</button>
+    </div>
   </div>
 </header>
 
 <div class="hero">
   <canvas id="graph"></canvas>
   <div class="wrap hero-in">
-    <div class="eyebrow">AI 应用工程师 · AI APPLICATION ENGINEER</div>
-    <h1>把大模型<em>编排</em>成能解决真实业务的系统</h1>
-    <p class="lede">
+    <div class="eyebrow" data-i18n="hero.eyebrow">AI 应用工程师 · AI APPLICATION ENGINEER</div>
+    <h1 data-i18n="hero.h1">把大模型<em>编排</em>成能解决真实业务的系统</h1>
+    <p class="lede" data-i18n="hero.lede">
       我是一名把 AI 用到极致的重度使用者——每天泡在 Claude Code、Cursor、Openclaw 里。
       这种<b>对模型边界的第一手直觉</b>（它能干什么、会在哪幻觉、怎么编排省 token），
       是我把它变成可交付系统的底气：<b>无向量 RAG 知识层、LLM-as-Judge 评测流水线、能跑通的 SLAM 与数据管线</b>。
     </p>
     <div class="metrics">
-      <div class="metric"><div class="n">41,829,938</div><div class="k">行数据端到端管线</div></div>
-      <div class="metric"><div class="n"><b>475</b>&nbsp;节点</div><div class="k">自动抽取知识图谱</div></div>
-      <div class="metric"><div class="n">ATE&nbsp;<b>2.31</b>m</div><div class="k">真实无人机 SLAM · 100% 跟踪</div></div>
-      <div class="metric"><div class="n">Top&nbsp;<b>14</b>/500+</div><div class="k">美团 AI Hackathon</div></div>
+      <div class="metric"><div class="n">41,829,938</div><div class="k" data-i18n="m1.k">行数据端到端管线</div></div>
+      <div class="metric"><div class="n" data-i18n="m2.n"><b>475</b>&nbsp;节点</div><div class="k" data-i18n="m2.k">自动抽取知识图谱</div></div>
+      <div class="metric"><div class="n">ATE&nbsp;<b>2.31</b>m</div><div class="k" data-i18n="m3.k">真实无人机 SLAM · 100% 跟踪</div></div>
+      <div class="metric"><div class="n">Top&nbsp;<b>14</b>/500+</div><div class="k" data-i18n="m4.k">美团 AI Hackathon</div></div>
     </div>
   </div>
 </div>
 
 <main>
-  <!-- ===== 打法 ===== -->
   <section id="play">
     <div class="wrap">
       <div class="sec-head">
         <span class="dot"></span>
-        <h2>我的打法：从"用得好"到"造得出"</h2>
+        <h2 data-i18n="play.h2">我的打法：从"用得好"到"造得出"</h2>
         <span class="eyebrow idx">/ 01</span>
       </div>
       <div class="play">
         <div class="step">
           <div class="node"></div>
           <div>
-            <h3>会消费 <small>power-use</small></h3>
-            <p>日常深度使用 Claude Code / Cursor / Openclaw 做真实开发与自动化。<b>清楚模型的能力边界和幻觉点</b>——这份边界感，是大多数工程师和产品都缺的。</p>
+            <h3 data-i18n="s1.h">会消费 <small>power-use</small></h3>
+            <p data-i18n="s1.p">日常深度使用 Claude Code / Cursor / Openclaw 做真实开发与自动化。<b>清楚模型的能力边界和幻觉点</b>——这份边界感，是大多数工程师和产品都缺的。</p>
           </div>
         </div>
         <div class="step">
           <div class="node"></div>
           <div>
-            <h3>会编排 <small>orchestrate</small></h3>
-            <p>不是调一次 API，而是设计"模型怎么被用"：<b>无向量 RAG 的知识层、三跳图检索、LLM-as-Judge 评测、Agent 工具调用契约、token 经济模型</b>。</p>
+            <h3 data-i18n="s2.h">会编排 <small>orchestrate</small></h3>
+            <p data-i18n="s2.p">不是调一次 API，而是设计"模型怎么被用"：<b>无向量 RAG 的知识层、三跳图检索、LLM-as-Judge 评测、Agent 工具调用契约、token 经济模型</b>。</p>
           </div>
         </div>
         <div class="step">
           <div class="node"></div>
           <div>
-            <h3>会落地 <small>ship</small></h3>
-            <p>交付的都是真东西：<b>4,100 万行数据管线、100% 跟踪率的 SLAM、Top 14/500 的评测系统</b>——都有仓库、有数据、可复现，不是 demo 截图。</p>
+            <h3 data-i18n="s3.h">会落地 <small>ship</small></h3>
+            <p data-i18n="s3.p">交付的都是真东西：<b>4,100 万行数据管线、100% 跟踪率的 SLAM、Top 14/500 的评测系统</b>——都有仓库、有数据、可复现，不是 demo 截图。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 项目 ===== -->
   <section id="work">
     <div class="wrap">
       <div class="sec-head">
         <span class="dot"></span>
-        <h2>精选项目</h2>
+        <h2 data-i18n="work.h2">精选项目</h2>
         <span class="eyebrow idx">/ 02</span>
       </div>
       <div class="grid">
 
-        <!-- P11 -->
         <article class="card">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
-            <span class="code">P11 · cdt-wiki</span>
-            <span class="tag">LLM Agent · 知识层</span>
-          </div>
-          <h3>无向量 RAG 的接口知识库</h3>
-          <p class="desc">为 AI Coding 智能体设计"不靠嵌入猜"的接口知识库——让大模型在上下文里像读地图一样导航索引树、定位接口节点，从源头消除检索噪声与误召回。</p>
+          <div class="chd"><span class="code">P11 · cdt-wiki</span><span class="tag" data-i18n="c11.tag">LLM Agent · 知识层</span></div>
+          <h3 data-i18n="c11.h3">无向量 RAG 的接口知识库</h3>
+          <p class="desc" data-i18n="c11.desc">为 AI Coding 智能体设计"不靠嵌入猜"的接口知识库——让大模型在上下文里像读地图一样导航索引树、定位接口节点，从源头消除检索噪声与误召回。</p>
           <ul>
-            <li>从 markdown 自动抽取字段级知识图谱 <b>475</b> 节点 / <b>552</b> 边</li>
-            <li>检索收敛为<b>固定三跳工具链</b>，零向量依赖</li>
-            <li><b>3</b> 层 token 经济模型，系统性压低单次调用成本与延迟</li>
-            <li>构建期完整性校验作质量门 · <b>22</b> 单测全绿</li>
+            <li data-i18n="c11.li1">从 markdown 自动抽取字段级知识图谱 <b>475</b> 节点 / <b>552</b> 边</li>
+            <li data-i18n="c11.li2">检索收敛为<b>固定三跳工具链</b>，零向量依赖</li>
+            <li data-i18n="c11.li3"><b>3</b> 层 token 经济模型，系统性压低单次调用成本与延迟</li>
+            <li data-i18n="c11.li4">构建期完整性校验作质量门 · <b>22</b> 单测全绿</li>
           </ul>
           <div class="stack"><span>Python</span><span>FastMCP</span><span>MCP</span><span>知识图谱</span><span>YAML</span></div>
-          <div class="foot">
-            <span class="bridge">→ LLM Agent 知识层 / API 知识工程化 / 检索成本优化</span>
-            <span class="repo na">浪潮实习 · 内部</span>
-          </div>
+          <div class="foot"><span class="bridge" data-i18n="c11.br">→ LLM Agent 知识层 / API 知识工程化 / 检索成本优化</span><span class="repo na" data-i18n="c11.repo">浪潮实习 · 内部</span></div>
         </article>
 
-        <!-- P10 -->
         <article class="card">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
-            <span class="code">P10 · DialAgentEval</span>
-            <span class="tag">LLM-as-Judge</span>
-          </div>
-          <h3>对话智能体自动化评测平台</h3>
-          <p class="desc">一键从 Agent Prompt 生成评测计划、自动判定多轮指令遵循，覆盖完整度 / 鲁棒性 / 安全性三类难题的端到端评测系统。</p>
+          <div class="chd"><span class="code">P10 · DialAgentEval</span><span class="tag">LLM-as-Judge</span></div>
+          <h3 data-i18n="c10.h3">对话智能体自动化评测平台</h3>
+          <p class="desc" data-i18n="c10.desc">一键从 Agent Prompt 生成评测计划、自动判定多轮指令遵循，覆盖完整度 / 鲁棒性 / 安全性三类难题的端到端评测系统。</p>
           <ul>
-            <li>美团 AI Hackathon <b>500+</b> 队中第 <b>14</b> 名</li>
-            <li>三层流水线：User Simulator / Runner / Grading Engine</li>
-            <li><b>8</b> 规则匹配器 + LLM Judge，输出带证据链评分</li>
-            <li><b>5</b> 维 persona 采样 + 安全红队对抗 + 回归对比</li>
+            <li data-i18n="c10.li1">美团 AI Hackathon <b>500+</b> 队中第 <b>14</b> 名</li>
+            <li data-i18n="c10.li2">三层流水线：User Simulator / Runner / Grading Engine</li>
+            <li data-i18n="c10.li3"><b>8</b> 规则匹配器 + LLM Judge，输出带证据链评分</li>
+            <li data-i18n="c10.li4"><b>5</b> 维 persona 采样 + 安全红队对抗 + 回归对比</li>
           </ul>
           <div class="stack"><span>Python</span><span>FastAPI</span><span>React 18 + TS</span><span>状态机</span></div>
-          <div class="foot">
-            <span class="bridge">→ Agent 评测体系 / 对话质量保障 / AI 可观测性</span>
-            <a class="repo" href="https://github.com/CHANGJianshuo/agent_eval" target="_blank" rel="noopener">↗ github</a>
-          </div>
+          <div class="foot"><span class="bridge" data-i18n="c10.br">→ Agent 评测体系 / 对话质量保障 / AI 可观测性</span><a class="repo" href="https://github.com/CHANGJianshuo/agent_eval" target="_blank" rel="noopener">↗ github</a></div>
         </article>
 
-        <!-- P03 -->
         <article class="card">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
-            <span class="code">P03 · ORB-SLAM3-DJI</span>
-            <span class="tag">视觉 SLAM · C++/ROS</span>
-          </div>
-          <h3>DJI 无人机视觉 SLAM 研究</h3>
-          <p class="desc">在真实 DJI M300 航拍数据上部署 ORB-SLAM3，独立实现 Virtual IMU 解决云台时变外参导致主流 VIO 直接跟丢的难题。独立完成全部代码、实验与评估。</p>
+          <div class="chd"><span class="code">P03 · ORB-SLAM3-DJI</span><span class="tag" data-i18n="c03.tag">视觉 SLAM · C++/ROS</span></div>
+          <h3 data-i18n="c03.h3">DJI 无人机视觉 SLAM 研究</h3>
+          <p class="desc" data-i18n="c03.desc">在真实 DJI M300 航拍数据上部署 ORB-SLAM3，独立实现 Virtual IMU 解决云台时变外参导致主流 VIO 直接跟丢的难题。独立完成全部代码、实验与评估。</p>
           <ul>
-            <li>AMtown 单目 VO：ATE <b>2.31</b> m · 跟踪完整度 <b>100%</b>（6,899 帧）</li>
-            <li>独写 <b>3</b> 个原创 ROS C++ 节点 + Virtual IMU 实时外参补偿</li>
-            <li>TUM-VI 基准交叉验证 VIO：ATE <b>0.011</b> m</li>
-            <li>k1 畸变消融揭示单系数导致 <b>46×</b> 轨迹精度变化</li>
+            <li data-i18n="c03.li1">AMtown 单目 VO：ATE <b>2.31</b> m · 跟踪完整度 <b>100%</b>（6,899 帧）</li>
+            <li data-i18n="c03.li2">独写 <b>3</b> 个原创 ROS C++ 节点 + Virtual IMU 实时外参补偿</li>
+            <li data-i18n="c03.li3">TUM-VI 基准交叉验证 VIO：ATE <b>0.011</b> m</li>
+            <li data-i18n="c03.li4">k1 畸变消融揭示单系数导致 <b>46×</b> 轨迹精度变化</li>
           </ul>
           <div class="stack"><span>ORB-SLAM3</span><span>C++</span><span>ROS</span><span>OpenCV</span><span>Linux</span><span>evo</span></div>
-          <div class="foot">
-            <span class="bridge">→ 巡检 / AGV / 无人集卡 SLAM · 多传感器融合</span>
-            <a class="repo" href="https://github.com/AfonsoZhang/ORB-SLAM3-DJI-AMtown" target="_blank" rel="noopener">↗ github</a>
-          </div>
+          <div class="foot"><span class="bridge" data-i18n="c03.br">→ 巡检 / AGV / 无人集卡 SLAM · 多传感器融合</span><a class="repo" href="https://github.com/AfonsoZhang/ORB-SLAM3-DJI-AMtown" target="_blank" rel="noopener">↗ github</a></div>
         </article>
 
-        <!-- P01 -->
         <article class="card">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
-            <span class="code">P01 · TLC × eVTOL</span>
-            <span class="tag">数据工程 · 运筹</span>
-          </div>
-          <h3>千万级出行数据 × eVTOL 网络规划</h3>
-          <p class="desc">在 4,100 万行真实出行数据上跑通"清洗 → 聚类 → MILP 选址 → 机队测算"全链路，把原始数据变成成本—产能决策材料。</p>
+          <div class="chd"><span class="code">P01 · TLC × eVTOL</span><span class="tag" data-i18n="c01.tag">数据工程 · 运筹</span></div>
+          <h3 data-i18n="c01.h3">千万级出行数据 × eVTOL 网络规划</h3>
+          <p class="desc" data-i18n="c01.desc">在 4,100 万行真实出行数据上跑通"清洗 → 聚类 → MILP 选址 → 机队测算"全链路，把原始数据变成成本—产能决策材料。</p>
           <ul>
-            <li>端到端管线：<b>41,829,938</b> 行 × 20 列 清洗与特征工程</li>
-            <li>K-Means 生成 vertiport 候选点 + 空域约束修正</li>
-            <li>枢纽—辐射 <b>MILP</b> 求解：2 hubs + 5 spokes</li>
-            <li>时间扩展网络流测算最优机队规模 <b>20</b> 架</li>
+            <li data-i18n="c01.li1">端到端管线：<b>41,829,938</b> 行 × 20 列 清洗与特征工程</li>
+            <li data-i18n="c01.li2">K-Means 生成 vertiport 候选点 + 空域约束修正</li>
+            <li data-i18n="c01.li3">枢纽—辐射 <b>MILP</b> 求解：2 hubs + 5 spokes</li>
+            <li data-i18n="c01.li4">时间扩展网络流测算最优机队规模 <b>20</b> 架</li>
           </ul>
           <div class="stack"><span>Python</span><span>Pandas</span><span>scikit-learn</span><span>PuLP · MILP</span></div>
-          <div class="foot">
-            <span class="bridge">→ 网点选址 / 配送网络 / 产能规划 / 反欺诈选样</span>
-            <span class="repo na">课程研究项目</span>
-          </div>
+          <div class="foot"><span class="bridge" data-i18n="c01.br">→ 网点选址 / 配送网络 / 产能规划 / 反欺诈选样</span><span class="repo na" data-i18n="c01.repo">课程研究项目</span></div>
         </article>
 
-        <!-- 自建 AI 工作流 — 差异化卡片 -->
         <article class="card wide">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
-            <span class="code">// self-built</span>
-            <span class="tag">AI power-use · 自建 Agent</span>
-          </div>
-          <h3>自建 AI 工作流：把工具用成生产力</h3>
-          <p class="desc">"顶级 AI 消费者"不是口号——我把日常的 AI 使用沉淀成自己的智能体和自动化流水线。这是这份作品集里最能说明"边界感"的一栏。</p>
+          <div class="chd"><span class="code">// self-built</span><span class="tag" data-i18n="cs.tag">AI power-use · 自建 Agent</span></div>
+          <h3 data-i18n="cs.h3">自建 AI 工作流：把工具用成生产力</h3>
+          <p class="desc" data-i18n="cs.desc">"顶级 AI 消费者"不是口号——我把日常的 AI 使用沉淀成自己的智能体和自动化流水线。这是这份作品集里最能说明"边界感"的一栏。</p>
           <div class="cols">
             <ul>
-              <li><b>OpenClaw「本地生活智能管家」</b>参赛作品，含可运行仓库与 B 站演示</li>
-              <li>自建<b>每周求职情报 cloud agent</b>：cron 定时扫描目标岗位、按匹配度自动分级</li>
+              <li data-i18n="cs.l1"><b>OpenClaw「本地生活智能管家」</b>参赛作品，含可运行仓库与 B 站演示</li>
+              <li data-i18n="cs.l2">日常用 Claude Code / Cursor / Openclaw 做<b>批量 LLM 任务</b>与流水线自动化</li>
             </ul>
             <ul>
-              <li>日常用 Claude Code / Cursor / Openclaw 做<b>批量 LLM 任务</b>与流水线自动化</li>
-              <li>为代码库搭结构化索引树 / 知识图谱检索，替代向量 RAG</li>
+              <li data-i18n="cs.l3">为代码库搭结构化索引树 / 知识图谱检索，替代向量 RAG</li>
+              <li data-i18n="cs.l4">有创建 AI Agent 与自动化工作流的一手经验</li>
             </ul>
           </div>
-          <div class="stack"><span>OpenClaw</span><span>Claude Code</span><span>Cursor</span><span>cron / routine</span></div>
-          <div class="foot">
-            <span class="bridge">→ AI 工程效率 / Agent 编排 / 内部工具建设</span>
-            <a class="repo" href="https://github.com/AfonsoZhang/local-life-butler" target="_blank" rel="noopener">↗ local-life-butler</a>
-          </div>
+          <div class="stack"><span>OpenClaw</span><span>Claude Code</span><span>Cursor</span><span>AI Agent</span></div>
+          <div class="foot"><span class="bridge" data-i18n="cs.br">→ AI 工程效率 / Agent 编排 / 内部工具建设</span><a class="repo" href="https://github.com/AfonsoZhang/local-life-butler" target="_blank" rel="noopener">↗ local-life-butler</a></div>
         </article>
 
-        <!-- P02 -->
         <article class="card">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
-            <span class="code">P02 · Detection</span>
-            <span class="tag">深度学习 · CV</span>
-          </div>
-          <h3>多模型融合目标检测系统</h3>
-          <p class="desc">PyTorch 下端到端检测 pipeline，量化对比一阶段与两阶段、全量微调与 LoRA 的精度—鲁棒性权衡。</p>
+          <div class="chd"><span class="code">P02 · Detection</span><span class="tag" data-i18n="c02.tag">深度学习 · CV</span></div>
+          <h3 data-i18n="c02.h3">多模型融合目标检测系统</h3>
+          <p class="desc" data-i18n="c02.desc">PyTorch 下端到端检测 pipeline，量化对比一阶段与两阶段、全量微调与 LoRA 的精度—鲁棒性权衡。</p>
           <ul>
-            <li>六阶段将检测率 <b>81.8% → 100%</b>（55/55）</li>
-            <li>YOLOv5/8/11 + Faster R-CNN 跨架构融合，IoU=0.3 NMS 控误检</li>
-            <li>LoRA 仅 <b>0.28%</b> 可训练参数，跨域较 COCO 基线 <b>+41%</b></li>
+            <li data-i18n="c02.li1">六阶段将检测率 <b>81.8% → 100%</b>（55/55）</li>
+            <li data-i18n="c02.li2">YOLOv5/8/11 + Faster R-CNN 跨架构融合，IoU=0.3 NMS 控误检</li>
+            <li data-i18n="c02.li3">LoRA 仅 <b>0.28%</b> 可训练参数，跨域较 COCO 基线 <b>+41%</b></li>
           </ul>
           <div class="stack"><span>PyTorch</span><span>Ultralytics</span><span>PEFT · LoRA</span><span>TTA</span></div>
-          <div class="foot">
-            <span class="bridge">→ 缺陷巡检 / 安全行为识别 / 二分类风控</span>
-            <a class="repo" href="https://github.com/AfonsoZhang/Airplane-Detection" target="_blank" rel="noopener">↗ github</a>
-          </div>
+          <div class="foot"><span class="bridge" data-i18n="c02.br">→ 缺陷巡检 / 安全行为识别 / 二分类风控</span><a class="repo" href="https://github.com/AfonsoZhang/Airplane-Detection" target="_blank" rel="noopener">↗ github</a></div>
         </article>
 
-        <!-- P09 -->
         <article class="card">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
-            <span class="code">P09 · HK UTM</span>
-            <span class="tag">低空空域 · UTM</span>
-          </div>
-          <h3>香港低空 UTM 空域交通管理</h3>
-          <p class="desc">6 人团队设计完整香港 UTM 架构，个人独立负责供需容量平衡（DCB）工作流，团队展示中由本人主讲此部分。</p>
+          <div class="chd"><span class="code">P09 · HK UTM</span><span class="tag" data-i18n="c09.tag">低空空域 · UTM</span></div>
+          <h3 data-i18n="c09.h3">香港低空 UTM 空域交通管理</h3>
+          <p class="desc" data-i18n="c09.desc">6 人团队设计完整香港 UTM 架构，个人独立负责供需容量平衡（DCB）工作流，团队展示中由本人主讲此部分。</p>
           <ul>
-            <li>非齐次泊松过程建模无协调请求 + 优先级准入门</li>
-            <li>独创导航不确定性敏感性分析：σ_nav 升高致吞吐降 <b>30–50%</b></li>
-            <li>参与开发 CesiumJS 三维空域仿真原型</li>
+            <li data-i18n="c09.li1">非齐次泊松过程建模无协调请求 + 优先级准入门</li>
+            <li data-i18n="c09.li2">独创导航不确定性敏感性分析：σ_nav 升高致吞吐降 <b>30–50%</b></li>
+            <li data-i18n="c09.li3">参与开发 CesiumJS 三维空域仿真原型</li>
           </ul>
           <div class="stack"><span>容量建模</span><span>泊松过程</span><span>CesiumJS</span><span>NASA Case 1</span></div>
-          <div class="foot">
-            <span class="bridge">→ 空域走廊规划 / vertiport 容量测算 / 调度策略</span>
-            <span class="repo na">港理大 AAE5302</span>
-          </div>
+          <div class="foot"><span class="bridge" data-i18n="c09.br">→ 空域走廊规划 / vertiport 容量测算 / 调度策略</span><span class="repo na" data-i18n="c09.repo">港理大 AAE5302</span></div>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- ===== 能力 ===== -->
   <section id="skills">
     <div class="wrap">
       <div class="sec-head">
         <span class="dot"></span>
-        <h2>能力矩阵</h2>
+        <h2 data-i18n="skills.h2">能力矩阵</h2>
         <span class="eyebrow idx">/ 03</span>
       </div>
       <div class="skills">
         <div class="skill">
-          <h4>大模型 / 智能体工程</h4>
-          <div class="chips"><span>LLM 应用工程</span><span>Agent 编排与工具调用</span><span>ReAct / LangGraph</span><span>LLM-as-Judge 评测</span><span>提示工程</span><span>安全红队</span><span>LoRA / PEFT</span><span>无向量 RAG · 三跳图检索</span></div>
+          <h4 data-i18n="sk1.h">大模型 / 智能体工程</h4>
+          <div class="chips" data-i18n="sk1.c"><span>LLM 应用工程</span><span>Agent 编排与工具调用</span><span>ReAct / LangGraph</span><span>LLM-as-Judge 评测</span><span>提示工程</span><span>安全红队</span><span>LoRA / PEFT</span><span>无向量 RAG · 三跳图检索</span></div>
         </div>
         <div class="skill">
-          <h4>数据 / 机器学习</h4>
-          <div class="chips"><span>Python</span><span>Pandas / NumPy</span><span>scikit-learn</span><span>PyTorch</span><span>SQL</span><span>Transformer</span><span>YOLO / Faster R-CNN</span><span>聚类 · 分类 · 回归</span></div>
+          <h4 data-i18n="sk2.h">数据 / 机器学习</h4>
+          <div class="chips" data-i18n="sk2.c"><span>Python</span><span>Pandas / NumPy</span><span>scikit-learn</span><span>PyTorch</span><span>SQL</span><span>Transformer</span><span>YOLO / Faster R-CNN</span><span>聚类 · 分类 · 回归</span></div>
         </div>
         <div class="skill">
-          <h4>Web / 服务与检索</h4>
-          <div class="chips"><span>FastAPI</span><span>React + TypeScript</span><span>Streamlit</span><span>MCP</span><span>SQLite</span><span>ChromaDB</span></div>
+          <h4 data-i18n="sk3.h">Web / 服务与检索</h4>
+          <div class="chips" data-i18n="sk3.c"><span>FastAPI</span><span>React + TypeScript</span><span>Streamlit</span><span>MCP</span><span>SQLite</span><span>ChromaDB</span></div>
         </div>
         <div class="skill">
-          <h4>工程 / 部署</h4>
-          <div class="chips"><span>Linux</span><span>C++</span><span>ROS / ROS2</span><span>Git</span><span>开源项目编译部署调试</span><span>系统问题定位</span></div>
+          <h4 data-i18n="sk4.h">工程 / 部署</h4>
+          <div class="chips" data-i18n="sk4.c"><span>Linux</span><span>C++</span><span>ROS / ROS2</span><span>Git</span><span>开源项目编译部署调试</span><span>系统问题定位</span></div>
         </div>
         <div class="skill">
-          <h4>运筹 / 低空</h4>
-          <div class="chips"><span>MILP · PuLP</span><span>遗传算法</span><span>网络选址</span><span>UTM / 空域交通管理</span><span>DCB 供需容量平衡</span><span>eVTOL 运营经济性</span></div>
+          <h4 data-i18n="sk5.h">运筹 / 低空</h4>
+          <div class="chips" data-i18n="sk5.c"><span>MILP · PuLP</span><span>遗传算法</span><span>网络选址</span><span>UTM / 空域交通管理</span><span>DCB 供需容量平衡</span><span>eVTOL 运营经济性</span></div>
         </div>
         <div class="skill">
-          <h4>语言 / 工具</h4>
-          <div class="chips"><span>雅思 7.0 · 可作工作语言</span><span>Claude Code / Cursor / Openclaw</span><span>Tableau</span><span>Git</span></div>
+          <h4 data-i18n="sk6.h">语言 / 工具</h4>
+          <div class="chips" data-i18n="sk6.c"><span>雅思 7.0 · 可作工作语言</span><span>Claude Code / Cursor / Openclaw</span><span>Tableau</span><span>Git</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 背景 ===== -->
   <section id="bg">
     <div class="wrap">
       <div class="sec-head">
         <span class="dot"></span>
-        <h2>教育与实习</h2>
+        <h2 data-i18n="bg.h2">教育与实习</h2>
         <span class="eyebrow idx">/ 04</span>
       </div>
       <div class="bg-grid">
         <div class="bg-col">
-          <h4>教育经历</h4>
+          <h4 data-i18n="bg.edu">教育经历</h4>
           <div class="item">
-            <div class="t">香港理工大学 · 低空经济硕士（MSc）</div>
-            <div class="m">2025.09 – 2027.01（预计） · 工程学院 · 英文授课</div>
-            <div class="d">国内首批面向 eVTOL / 城市无人机 / U-Space 培养的工程硕士，含航空业 AI 应用、视觉 SLAM 与无人机感知等课程。</div>
+            <div class="t" data-i18n="e1.t">香港理工大学 · 低空经济硕士（MSc）</div>
+            <div class="m" data-i18n="e1.m">2025.09 – 2027.01（预计） · 工程学院 · 英文授课</div>
+            <div class="d" data-i18n="e1.d">国内首批面向 eVTOL / 城市无人机 / U-Space 培养的工程硕士，含航空业 AI 应用、视觉 SLAM 与无人机感知等课程。</div>
           </div>
           <div class="item">
-            <div class="t">澳门理工大学 · 电子商务学士</div>
-            <div class="m">2021.09 – 2025.08 · GPA 3.20 / 4.00 · 英文授课</div>
-            <div class="d">商业智能、数据库、系统分析与设计、编程导论——商业分析底子叠加工程能力。</div>
+            <div class="t" data-i18n="e2.t">澳门理工大学 · 电子商务学士</div>
+            <div class="m" data-i18n="e2.m">2021.09 – 2025.08 · GPA 3.20 / 4.00 · 英文授课</div>
+            <div class="d" data-i18n="e2.d">商业智能、数据库、系统分析与设计、编程导论——商业分析底子叠加工程能力。</div>
           </div>
         </div>
         <div class="bg-col">
-          <h4>实习经历</h4>
+          <h4 data-i18n="bg.exp">实习经历</h4>
           <div class="item">
-            <div class="t">浪潮数字企业 · AI Coding 智能体开发实习</div>
-            <div class="m">2026.06 – 至今 · 定制开发部</div>
-            <div class="d">构建产品接口知识库 cdt-wiki，设计"树为主、图为辅"混合检索架构与字段级知识图谱管线。</div>
+            <div class="t" data-i18n="x1.t">浪潮数字企业 · AI Coding 智能体开发实习</div>
+            <div class="m" data-i18n="x1.m">2026.06 – 至今 · 定制开发部</div>
+            <div class="d" data-i18n="x1.d">构建产品接口知识库 cdt-wiki，设计"树为主、图为辅"混合检索架构与字段级知识图谱管线。</div>
           </div>
           <div class="item">
-            <div class="t">中国工商银行 济南分行 · 金融业务实习</div>
-            <div class="m">2024.06 – 2024.07 · 个人/企业金融业务部</div>
-            <div class="d">处理 200+ 客户记录，独立负责片区拆迁补偿款派发项目，办结率 100%。</div>
+            <div class="t" data-i18n="x2.t">中国工商银行 济南分行 · 金融业务实习</div>
+            <div class="m" data-i18n="x2.m">2024.06 – 2024.07 · 个人/企业金融业务部</div>
+            <div class="d" data-i18n="x2.d">处理 200+ 客户记录，独立负责片区拆迁补偿款派发项目，办结率 100%。</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 联系 ===== -->
   <section class="contact" id="contact">
     <div class="wrap">
-      <div class="eyebrow" style="margin-bottom:18px">让我们聊聊 · GET IN TOUCH</div>
-      <h2>在找 AI 应用 / 全栈方向的岗位与实习</h2>
-      <p class="sub">如果你的团队需要一个"会把大模型真正编排进产品"的人，欢迎联系。</p>
+      <div class="eyebrow" style="margin-bottom:18px" data-i18n="ct.eyebrow">让我们聊聊 · GET IN TOUCH</div>
+      <h2 data-i18n="ct.h2">在找 AI 应用 / 全栈方向的岗位与实习</h2>
+      <p class="sub" data-i18n="ct.sub">如果你的团队需要一个"会把大模型真正编排进产品"的人，欢迎联系。</p>
       <div class="links">
-        <a href="mailto:18763989313@163.com"><span class="k">邮箱</span> 18763989313@163.com</a>
-        <a href="tel:+8618763989313"><span class="k">电话</span> +86 187-6398-9313</a>
+        <a href="mailto:18763989313@163.com"><span class="k" data-i18n="ct.email">邮箱</span> 18763989313@163.com</a>
+        <a href="tel:+8618763989313"><span class="k" data-i18n="ct.phone">电话</span> +86 187-6398-9313</a>
         <a href="https://github.com/AfonsoZhang" target="_blank" rel="noopener"><span class="k">GitHub</span> /AfonsoZhang</a>
-        <a href="https://linkedin.com/in/afonsozhang" target="_blank" rel="noopener"><span class="k">领英</span> /afonsozhang</a>
+        <a href="https://linkedin.com/in/afonsozhang" target="_blank" rel="noopener"><span class="k">LinkedIn</span> /afonsozhang</a>
       </div>
-      <div class="region">意向地点 &nbsp;<b>香港 · 济南 / 山东 · 北上广深</b>&nbsp;&nbsp;|&nbsp;&nbsp;届别 <b>2027 届</b></div>
+      <div class="region" data-i18n="ct.region">意向地点 &nbsp;<b>香港 · 济南 / 山东 · 北上广深</b>&nbsp;&nbsp;|&nbsp;&nbsp;届别 <b>2027 届</b></div>
     </div>
   </section>
 </main>
@@ -528,105 +425,206 @@
 <footer>
   <div class="wrap fin">
     <span>张叔阳 · ZHANG Shuyang</span>
-    <span>本页所有数据均来自可复现的真实项目</span>
+    <span data-i18n="foot">本页所有数据均来自可复现的真实项目</span>
   </div>
 </footer>
 
 <script>
 (function () {
+  /* ---------- i18n (Chinese lives in the DOM; English in EN dict) ---------- */
+  var EN = {
+    "nav.play":"Playbook","nav.work":"Work","nav.skills":"Skills","nav.bg":"Background","nav.contact":"Contact",
+    "hero.eyebrow":"AI APPLICATION ENGINEER",
+    "hero.h1":"I <em>orchestrate</em> LLMs into systems that solve real business problems",
+    "hero.lede":"I'm a power-user who pushes AI to its limits — living in Claude Code, Cursor and Openclaw every day. That <b>first-hand feel for where models excel and where they hallucinate</b>, and how to orchestrate them cheaply on tokens, is what lets me turn them into shippable systems: <b>vector-free RAG knowledge layers, LLM-as-Judge evaluation pipelines, and SLAM &amp; data pipelines that actually run</b>.",
+    "m1.k":"rows · end-to-end pipeline",
+    "m2.n":"<b>475</b>&nbsp;nodes","m2.k":"auto-extracted knowledge graph",
+    "m3.k":"real-drone SLAM · 100% tracking",
+    "m4.k":"Meituan AI Hackathon",
+    "play.h2":"How I work — from power-user to builder",
+    "s1.h":"Consume <small>power-use</small>",
+    "s1.p":"I use Claude Code / Cursor / Openclaw daily for real development and automation, and I <b>know exactly where models are capable and where they hallucinate</b> — a sense of the boundary most engineers and PMs lack.",
+    "s2.h":"Orchestrate <small>orchestrate</small>",
+    "s2.p":"Not a one-off API call, but designing <b>how</b> a model gets used: <b>vector-free RAG knowledge layers, three-hop graph retrieval, LLM-as-Judge evaluation, agent tool-calling contracts, token economics</b>.",
+    "s3.h":"Ship <small>ship</small>",
+    "s3.p":"Everything I deliver is real: a <b>41-million-row data pipeline, a SLAM system with 100% tracking, an evaluation platform ranked Top 14/500</b> — all with public repos, real data, reproducible.",
+    "work.h2":"Selected Work",
+    "c11.tag":"LLM Agent · Knowledge layer",
+    "c11.h3":"Vector-free RAG knowledge base for APIs",
+    "c11.desc":"A knowledge base that doesn't “guess by embedding” — the model navigates an index tree in-context to locate API nodes, killing retrieval noise and false recalls at the source.",
+    "c11.li1":"Field-level knowledge graph auto-extracted from markdown: <b>475</b> nodes / <b>552</b> edges",
+    "c11.li2":"Retrieval reduced to a <b>fixed three-hop</b> tool chain, zero vector dependency",
+    "c11.li3":"<b>3</b>-layer token-economy model, systematically cutting per-call cost and latency",
+    "c11.li4":"Build-time integrity checks as a quality gate · <b>22</b> unit tests green",
+    "c11.br":"→ LLM agent knowledge layers / API knowledge engineering / retrieval cost",
+    "c11.repo":"Inspur internship · internal",
+    "c10.h3":"Automated evaluation platform for dialogue agents",
+    "c10.desc":"One click turns an agent prompt into an evaluation plan and auto-judges multi-turn instruction-following — completeness, robustness and safety, end to end.",
+    "c10.li1":"Ranked <b>14</b>th of <b>500+</b> teams at the Meituan AI Hackathon",
+    "c10.li2":"Three-layer pipeline: User Simulator / Runner / Grading Engine",
+    "c10.li3":"<b>8</b> rule matchers + LLM Judge, evidence-linked scoring",
+    "c10.li4":"<b>5</b>-dimension persona sampling + safety red-teaming + regression diffs",
+    "c10.br":"→ Agent evaluation / dialogue QA / AI observability",
+    "c03.tag":"Visual SLAM · C++/ROS",
+    "c03.h3":"Visual SLAM on DJI drone imagery",
+    "c03.desc":"Deployed ORB-SLAM3 on real DJI M300 aerial data and independently built a Virtual IMU to solve the time-varying gimbal extrinsics that make mainstream VIO lose tracking. Solo end-to-end: all code, experiments and evaluation.",
+    "c03.li1":"AMtown monocular VO: ATE <b>2.31</b> m · tracking completeness <b>100%</b> (6,899 frames)",
+    "c03.li2":"Wrote <b>3</b> original ROS C++ nodes + real-time Virtual IMU extrinsics compensation",
+    "c03.li3":"Cross-validated VIO on the TUM-VI benchmark: ATE <b>0.011</b> m",
+    "c03.li4":"k1 distortion ablation shows one coefficient drives a <b>46×</b> trajectory-accuracy change",
+    "c03.br":"→ Inspection / AGV / autonomous-truck SLAM · sensor fusion",
+    "c01.tag":"Data engineering · Optimization",
+    "c01.h3":"40M-row mobility data × eVTOL network planning",
+    "c01.desc":"Ran a full “clean → cluster → MILP siting → fleet sizing” pipeline over 41 million rows of real mobility data, turning raw data into cost-and-capacity decisions.",
+    "c01.li1":"End-to-end pipeline: <b>41,829,938</b> rows × 20 cols cleaned &amp; feature-engineered",
+    "c01.li2":"K-Means generates vertiport candidates + airspace-constraint correction",
+    "c01.li3":"Hub-and-spoke <b>MILP</b> solve: 2 hubs + 5 spokes",
+    "c01.li4":"Time-expanded network flow sizes the optimal fleet at <b>20</b> aircraft",
+    "c01.br":"→ Site selection / delivery networks / capacity planning / fraud sampling",
+    "c01.repo":"Course research project",
+    "cs.tag":"AI power-use · self-built agents",
+    "cs.h3":"Self-built AI workflows: tools as leverage",
+    "cs.desc":"“Top AI consumer” isn't a slogan — I distill daily AI use into my own agents and automation pipelines. This is the entry that best shows the boundary sense.",
+    "cs.l1":"<b>OpenClaw local-life butler</b> competition entry, with a runnable repo and a Bilibili demo",
+    "cs.l2":"Daily <b>batch LLM jobs</b> and pipeline automation with Claude Code / Cursor / Openclaw",
+    "cs.l3":"Structured index trees / graph retrieval over codebases as a vector-RAG alternative",
+    "cs.l4":"Hands-on experience building AI agents and automation workflows",
+    "cs.br":"→ AI engineering efficiency / agent orchestration / internal tooling",
+    "c02.tag":"Deep learning · CV",
+    "c02.h3":"Multi-model fusion object detection",
+    "c02.desc":"End-to-end PyTorch detection pipeline quantifying the accuracy–robustness trade-offs of one- vs two-stage, and full fine-tuning vs LoRA.",
+    "c02.li1":"Six stages lift detection rate <b>81.8% → 100%</b> (55/55)",
+    "c02.li2":"Cross-architecture fusion of YOLOv5/8/11 + Faster R-CNN, IoU=0.3 NMS controls false positives",
+    "c02.li3":"LoRA with only <b>0.28%</b> trainable params, <b>+41%</b> over the COCO baseline cross-domain",
+    "c02.br":"→ Defect inspection / behavior recognition / binary risk models",
+    "c09.tag":"Low-altitude airspace · UTM",
+    "c09.h3":"Hong Kong low-altitude UTM airspace management",
+    "c09.desc":"A 6-person team designing a full Hong Kong UTM architecture; I owned the Demand-and-Capacity Balancing (DCB) workflow and presented it for the team.",
+    "c09.li1":"Non-homogeneous Poisson process models uncoordinated requests + a priority admission gate",
+    "c09.li2":"Original navigation-uncertainty sensitivity analysis: throughput drops <b>30–50%</b> as σ_nav rises",
+    "c09.li3":"Co-built a CesiumJS 3D airspace simulation prototype",
+    "c09.br":"→ Corridor planning / vertiport capacity / scheduling strategy",
+    "c09.repo":"PolyU AAE5302",
+    "skills.h2":"Skills",
+    "sk1.h":"LLM / Agent engineering",
+    "sk1.c":"<span>LLM app engineering</span><span>Agent orchestration &amp; tool-calling</span><span>ReAct / LangGraph</span><span>LLM-as-Judge eval</span><span>Prompt engineering</span><span>Safety red-teaming</span><span>LoRA / PEFT</span><span>Vector-free RAG · 3-hop graph</span>",
+    "sk2.h":"Data / Machine learning",
+    "sk2.c":"<span>Python</span><span>Pandas / NumPy</span><span>scikit-learn</span><span>PyTorch</span><span>SQL</span><span>Transformer</span><span>YOLO / Faster R-CNN</span><span>Clustering · Classification · Regression</span>",
+    "sk3.h":"Web / Services &amp; retrieval",
+    "sk3.c":"<span>FastAPI</span><span>React + TypeScript</span><span>Streamlit</span><span>MCP</span><span>SQLite</span><span>ChromaDB</span>",
+    "sk4.h":"Engineering / Deployment",
+    "sk4.c":"<span>Linux</span><span>C++</span><span>ROS / ROS2</span><span>Git</span><span>OSS build, deploy &amp; debug</span><span>System debugging</span>",
+    "sk5.h":"Optimization / Low-altitude",
+    "sk5.c":"<span>MILP · PuLP</span><span>Genetic algorithms</span><span>Network siting</span><span>UTM / airspace management</span><span>DCB capacity balancing</span><span>eVTOL operations economics</span>",
+    "sk6.h":"Languages / Tools",
+    "sk6.c":"<span>IELTS 7.0 · working proficiency</span><span>Claude Code / Cursor / Openclaw</span><span>Tableau</span><span>Git</span>",
+    "bg.h2":"Education &amp; Experience",
+    "bg.edu":"Education","bg.exp":"Experience",
+    "e1.t":"Hong Kong PolyU · MSc Low-Altitude Economy",
+    "e1.m":"2025.09 – 2027.01 (expected) · Faculty of Engineering · English-taught",
+    "e1.d":"One of China's first engineering master's programs for eVTOL / urban drones / U-Space; courses in aviation AI, visual SLAM and drone perception.",
+    "e2.t":"Macao Polytechnic University · BSc E-commerce",
+    "e2.m":"2021.09 – 2025.08 · GPA 3.20 / 4.00 · English-taught",
+    "e2.d":"Business intelligence, databases, systems analysis &amp; design, intro to programming — a business-analytics base layered with engineering.",
+    "x1.t":"Inspur Digital Enterprise · AI Coding agent dev intern",
+    "x1.m":"2026.06 – present · Custom Development",
+    "x1.d":"Built the cdt-wiki API knowledge base; designed a tree-primary, graph-secondary hybrid retrieval architecture and a field-level knowledge-graph pipeline.",
+    "x2.t":"ICBC, Jinan Branch · Banking intern",
+    "x2.m":"2024.06 – 2024.07 · Personal / Corporate Banking",
+    "x2.d":"Processed 200+ client records; independently ran a district compensation-disbursement project with a 100% completion rate.",
+    "ct.eyebrow":"GET IN TOUCH",
+    "ct.h2":"Open to AI application / full-stack roles &amp; internships",
+    "ct.sub":"If your team needs someone who can actually orchestrate LLMs into a product, let's talk.",
+    "ct.email":"Email","ct.phone":"Phone",
+    "ct.region":"Locations &nbsp;<b>Hong Kong · Jinan / Shandong · Beijing / Shanghai / Guangzhou / Shenzhen</b>&nbsp;&nbsp;|&nbsp;&nbsp;<b>Class of 2027</b>",
+    "foot":"All figures come from reproducible, real projects"
+  };
+
+  var ZH = {}, cur = "zh";
+  var nodes = document.querySelectorAll('[data-i18n]');
+  nodes.forEach(function (el) { ZH[el.getAttribute('data-i18n')] = el.innerHTML; });
+
+  function setLang(l) {
+    var map = (l === 'en') ? EN : ZH;
+    nodes.forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (map[k] != null) el.innerHTML = map[k];
+    });
+    document.documentElement.lang = (l === 'en') ? 'en' : 'zh-CN';
+    var b = document.getElementById('langBtn');
+    if (b) b.textContent = (l === 'en') ? '中文' : 'EN';
+    cur = l;
+    try { localStorage.setItem('portfolio-lang', l); } catch (e) {}
+  }
+
+  var saved = 'zh';
+  try { saved = localStorage.getItem('portfolio-lang') || 'zh'; } catch (e) {}
+  if (saved === 'en') setLang('en');
+
+  var btn = document.getElementById('langBtn');
+  if (btn) btn.addEventListener('click', function () { setLang(cur === 'en' ? 'zh' : 'en'); });
+
+  /* ---------- ambient node–edge graph ---------- */
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canvas = document.getElementById('graph');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
-  var W, H, dpr, nodes = [], edges = [], pulses = [];
+  var W, H, dpr, gnodes = [], edges = [], pulses = [];
 
   function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
   function rgba(hex, a){
     hex = hex.replace('#',''); if(hex.length===3){hex=hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];}
     var n=parseInt(hex,16); return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';
   }
-
   function build() {
     var rect = canvas.getBoundingClientRect();
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = rect.width; H = rect.height;
     canvas.width = W * dpr; canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    nodes = []; edges = [];
+    gnodes = []; edges = [];
     var N = W < 640 ? 16 : 30;
     for (var i=0;i<N;i++){
-      nodes.push({
-        x: Math.random()*W, y: Math.random()*H,
-        vx: (Math.random()-.5)*0.12, vy: (Math.random()-.5)*0.12,
-        r: Math.random()*1.6 + 1.1
-      });
+      gnodes.push({ x: Math.random()*W, y: Math.random()*H, vx:(Math.random()-.5)*0.12, vy:(Math.random()-.5)*0.12, r: Math.random()*1.6 + 1.1 });
     }
-    // connect nearest neighbours
-    for (var a=0;a<nodes.length;a++){
+    for (var a=0;a<gnodes.length;a++){
       var d = [];
-      for (var b=0;b<nodes.length;b++){ if(a===b) continue;
-        var dx=nodes[a].x-nodes[b].x, dy=nodes[a].y-nodes[b].y;
-        d.push({b:b, dist:dx*dx+dy*dy});
-      }
+      for (var b=0;b<gnodes.length;b++){ if(a===b) continue;
+        var dx=gnodes[a].x-gnodes[b].x, dy=gnodes[a].y-gnodes[b].y; d.push({b:b, dist:dx*dx+dy*dy}); }
       d.sort(function(p,q){return p.dist-q.dist;});
       var k = 2 + (Math.random()*2|0);
       for (var j=0;j<k;j++){ if(d[j] && a < d[j].b) edges.push({a:a,b:d[j].b}); }
     }
   }
-
-  function spawnPulse(){
-    if (edges.length===0) return;
-    var e = edges[(Math.random()*edges.length)|0];
-    pulses.push({e:e, t:0, sp: 0.006 + Math.random()*0.008});
-  }
-
+  function spawnPulse(){ if(edges.length===0) return; pulses.push({e:edges[(Math.random()*edges.length)|0], t:0, sp:0.006+Math.random()*0.008}); }
   var last = 0;
   function frame(ts){
-    var acc = css('--accent') || '#c86e24';
-    var tr  = css('--trace')  || '#48627a';
-    ctx.clearRect(0,0,W,H);
-
-    // edges
-    ctx.lineWidth = 1;
+    var acc = css('--accent') || '#c86e24', tr = css('--trace') || '#48627a';
+    ctx.clearRect(0,0,W,H); ctx.lineWidth = 1;
     for (var i=0;i<edges.length;i++){
-      var na=nodes[edges[i].a], nb=nodes[edges[i].b];
-      ctx.strokeStyle = rgba(tr, 0.16);
-      ctx.beginPath(); ctx.moveTo(na.x,na.y); ctx.lineTo(nb.x,nb.y); ctx.stroke();
+      var na=gnodes[edges[i].a], nb=gnodes[edges[i].b];
+      ctx.strokeStyle = rgba(tr, 0.16); ctx.beginPath(); ctx.moveTo(na.x,na.y); ctx.lineTo(nb.x,nb.y); ctx.stroke();
     }
-    // nodes
-    for (var n=0;n<nodes.length;n++){
-      var nd=nodes[n];
-      if(!reduce){ nd.x+=nd.vx; nd.y+=nd.vy;
-        if(nd.x<0||nd.x>W) nd.vx*=-1; if(nd.y<0||nd.y>H) nd.vy*=-1; }
-      ctx.fillStyle = rgba(tr, 0.5);
-      ctx.beginPath(); ctx.arc(nd.x,nd.y,nd.r,0,6.2832); ctx.fill();
+    for (var n=0;n<gnodes.length;n++){
+      var nd=gnodes[n];
+      if(!reduce){ nd.x+=nd.vx; nd.y+=nd.vy; if(nd.x<0||nd.x>W) nd.vx*=-1; if(nd.y<0||nd.y>H) nd.vy*=-1; }
+      ctx.fillStyle = rgba(tr, 0.5); ctx.beginPath(); ctx.arc(nd.x,nd.y,nd.r,0,6.2832); ctx.fill();
     }
-    // pulses travelling along edges (the "signal")
     if(!reduce){
       if (ts-last > 900 && pulses.length < 6){ spawnPulse(); last = ts; }
       for (var p=pulses.length-1;p>=0;p--){
         var pu=pulses[p]; pu.t += pu.sp; if(pu.t>=1){ pulses.splice(p,1); continue; }
-        var ea=nodes[pu.e.a], eb=nodes[pu.e.b];
-        var x=ea.x+(eb.x-ea.x)*pu.t, y=ea.y+(eb.y-ea.y)*pu.t;
-        var glow = Math.sin(pu.t*Math.PI);
-        ctx.fillStyle = rgba(acc, 0.75*glow);
-        ctx.beginPath(); ctx.arc(x,y,2.2,0,6.2832); ctx.fill();
-        ctx.fillStyle = rgba(acc, 0.18*glow);
-        ctx.beginPath(); ctx.arc(x,y,6,0,6.2832); ctx.fill();
+        var ea=gnodes[pu.e.a], eb=gnodes[pu.e.b];
+        var x=ea.x+(eb.x-ea.x)*pu.t, y=ea.y+(eb.y-ea.y)*pu.t, glow = Math.sin(pu.t*Math.PI);
+        ctx.fillStyle = rgba(acc, 0.75*glow); ctx.beginPath(); ctx.arc(x,y,2.2,0,6.2832); ctx.fill();
+        ctx.fillStyle = rgba(acc, 0.18*glow); ctx.beginPath(); ctx.arc(x,y,6,0,6.2832); ctx.fill();
       }
     }
     requestAnimationFrame(frame);
   }
-
   build();
-  if(reduce){
-    // draw one static frame
-    requestAnimationFrame(function(t){ frame(t); });
-  } else {
-    requestAnimationFrame(frame);
-  }
-  var rt;
-  window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(build, 200); });
+  requestAnimationFrame(frame);
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(build, 200); });
 })();
 </script>
 </body>
