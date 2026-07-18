@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="张叔阳（AI 应用工程师）作品集 —— LLM/Agent、视觉 SLAM、数据工程，均为可复现的真实项目。">
+<title>张叔阳 · AI 应用工程师作品集</title>
+<style>
+  :root {
+    /* light — cool graphite neutrals + single amber signal */
+    --paper:  #E7E8EB;
+    --panel:  #F1F2F4;
+    --panel-2:#FAFBFC;
+    --ink:    #171A1F;
+    --ink-soft:#414852;
+    --slate:  #6A727E;
+    --line:   #CDD1D7;
+    --line-soft:#DBDEE3;
+    --accent: #A85818;
+    --accent-bright:#C86E24;
+    --trace:  #48627A;
+
+    --maxw: 1060px;
+    --sans: "PingFang SC","Noto Sans SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono: ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:  #0E1014;
+      --panel:  #15181E;
+      --panel-2:#1B1F26;
+      --ink:    #E8EAED;
+      --ink-soft:#B3BAC4;
+      --slate:  #808A97;
+      --line:   #262B33;
+      --line-soft:#1F242B;
+      --accent: #E0913F;
+      --accent-bright:#EDA658;
+      --trace:  #6E8CA6;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper:#E7E8EB; --panel:#F1F2F4; --panel-2:#FAFBFC; --ink:#171A1F; --ink-soft:#414852;
+    --slate:#6A727E; --line:#CDD1D7; --line-soft:#DBDEE3; --accent:#A85818; --accent-bright:#C86E24; --trace:#48627A;
+  }
+  :root[data-theme="dark"] {
+    --paper:#0E1014; --panel:#15181E; --panel-2:#1B1F26; --ink:#E8EAED; --ink-soft:#B3BAC4;
+    --slate:#808A97; --line:#262B33; --line-soft:#1F242B; --accent:#E0913F; --accent-bright:#EDA658; --trace:#6E8CA6;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.72;
+    font-size: 16px; letter-spacing: .005em;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-bright); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---- eyebrow / mono utility layer ---- */
+  .eyebrow {
+    font-family: var(--mono); font-size: .70rem; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--slate); font-weight: 500;
+  }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* ---- top bar ---- */
+  header.bar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .bar-in { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .bar-name { font-weight: 700; letter-spacing: .02em; font-size: .95rem; }
+  .bar-name span { color: var(--slate); font-family: var(--mono); font-weight: 500; font-size: .8rem; margin-left: .5rem; }
+  .bar-nav { display: flex; gap: 22px; }
+  .bar-nav a { font-family: var(--mono); font-size: .78rem; color: var(--ink-soft); letter-spacing: .04em; }
+  .bar-nav a:hover { color: var(--accent); }
+  @media (max-width: 640px){ .bar-nav { display: none; } }
+
+  /* ---- hero ---- */
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line-soft); }
+  #graph { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .9; pointer-events: none; }
+  .hero-in { position: relative; z-index: 2; padding: 92px 0 76px; }
+  .hero h1 {
+    font-size: clamp(2.3rem, 6.2vw, 4.15rem); line-height: 1.08; margin: 18px 0 0;
+    font-weight: 800; letter-spacing: -.01em; text-wrap: balance; max-width: 16ch;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero .lede {
+    margin: 26px 0 0; max-width: 52ch; font-size: clamp(1.02rem,2.2vw,1.18rem);
+    color: var(--ink-soft); line-height: 1.7;
+  }
+  .hero .lede b { color: var(--ink); font-weight: 600; }
+
+  .metrics {
+    display: flex; flex-wrap: wrap; gap: 0; margin-top: 44px;
+    border: 1px solid var(--line); border-radius: 3px; overflow: hidden;
+    background: color-mix(in srgb, var(--panel) 70%, transparent);
+    width: fit-content; max-width: 100%;
+  }
+  .metric { padding: 14px 22px 12px; border-right: 1px solid var(--line); }
+  .metric:last-child { border-right: 0; }
+  .metric .n { font-family: var(--mono); font-size: 1.3rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .metric .n b { color: var(--accent); font-weight: 600; }
+  .metric .k { font-size: .74rem; color: var(--slate); margin-top: 2px; letter-spacing: .02em; }
+  @media (max-width:560px){ .metric { flex: 1 0 46%; border-bottom: 1px solid var(--line);} }
+
+  /* ---- section frame ---- */
+  section { padding: 74px 0; border-bottom: 1px solid var(--line-soft); }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 38px; }
+  .sec-head .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; transform: translateY(-1px); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .sec-head h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); font-weight: 750; margin: 0; letter-spacing: -.01em; }
+  .sec-head .idx { margin-left: auto; }
+
+  /* ---- 打法 pipeline ---- */
+  .play { display: grid; gap: 0; position: relative; }
+  .play::before { content:""; position: absolute; left: 5px; top: 12px; bottom: 12px; width: 1px; background: linear-gradient(var(--accent), var(--trace)); opacity:.5; }
+  .step { display: grid; grid-template-columns: 44px 1fr; padding: 18px 0; }
+  .step:not(:last-child){ border-bottom: 1px solid var(--line-soft); }
+  .step .node { width: 11px; height: 11px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); margin-top: 7px; position: relative; z-index: 1; }
+  .step h3 { margin: 0 0 6px; font-size: 1.12rem; font-weight: 700; }
+  .step h3 small { font-family: var(--mono); color: var(--slate); font-weight: 500; font-size: .72rem; letter-spacing: .08em; margin-left: 10px; text-transform: uppercase; }
+  .step p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
+  .step p b { color: var(--ink); font-weight: 600; }
+
+  /* ---- projects ---- */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 760px){ .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+    padding: 24px 24px 22px; display: flex; flex-direction: column;
+    position: relative; transition: border-color .18s, transform .18s;
+  }
+  .card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+  .card .code { font-family: var(--mono); font-size: .72rem; color: var(--accent); letter-spacing: .08em; }
+  .card .tag { font-family: var(--mono); font-size: .68rem; color: var(--slate); letter-spacing: .08em; text-transform: uppercase; }
+  .card h3 { margin: 10px 0 4px; font-size: 1.22rem; font-weight: 750; letter-spacing: -.005em; }
+  .card .desc { margin: 6px 0 16px; color: var(--ink-soft); font-size: .95rem; line-height: 1.66; }
+  .card ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 7px; }
+  .card li { font-size: .88rem; color: var(--ink); padding-left: 16px; position: relative; line-height: 1.5; }
+  .card li::before { content:""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; background: var(--trace); border-radius: 50%; }
+  .card li b { font-family: var(--mono); color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .stack span { font-family: var(--mono); font-size: .70rem; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 3px; padding: 2px 7px; letter-spacing: .01em; background: var(--panel-2); }
+  .card .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 8px; border-top: 1px solid var(--line-soft); }
+  .bridge { font-size: .78rem; color: var(--slate); line-height: 1.4; }
+  .repo { font-family: var(--mono); font-size: .76rem; white-space: nowrap; }
+  .repo.na { color: var(--slate); }
+
+  .card.wide { grid-column: 1 / -1; }
+  .card.wide .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 26px; }
+  @media (max-width: 620px){ .card.wide .cols { grid-template-columns: 1fr; } }
+
+  /* ---- skills ---- */
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  @media (max-width: 680px){ .skills { grid-template-columns: 1fr; } }
+  .skill { background: var(--panel); padding: 20px 22px; }
+  .skill h4 { margin: 0 0 12px; font-size: .82rem; font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .skill .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill .chips span { font-size: .82rem; color: var(--ink-soft); }
+  .skill .chips span::after { content:"·"; color: var(--line); margin-left: 7px; }
+  .skill .chips span:last-child::after { content:""; }
+
+  /* ---- background ---- */
+  .bg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  @media (max-width: 680px){ .bg-grid { grid-template-columns: 1fr; gap: 26px; } }
+  .bg-col h4 { font-family: var(--mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); margin: 0 0 16px; font-weight: 500; }
+  .item { padding: 14px 0; border-top: 1px solid var(--line-soft); }
+  .item:first-of-type { border-top: 0; padding-top: 0; }
+  .item .t { font-weight: 650; font-size: 1rem; }
+  .item .m { font-family: var(--mono); font-size: .74rem; color: var(--slate); margin-top: 2px; }
+  .item .d { font-size: .88rem; color: var(--ink-soft); margin-top: 4px; }
+
+  /* ---- contact ---- */
+  .contact { padding: 78px 0 92px; border-bottom: 0; }
+  .contact h2 { font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 800; letter-spacing: -.015em; margin: 0 0 8px; max-width: 20ch; text-wrap: balance; }
+  .contact p.sub { color: var(--ink-soft); margin: 0 0 30px; max-width: 46ch; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .links a, .links .li {
+    font-family: var(--mono); font-size: .84rem; display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid var(--line); background: var(--panel); border-radius: 4px; padding: 11px 16px; color: var(--ink);
+    transition: border-color .16s, color .16s;
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .links .li { color: var(--ink-soft); }
+  .links .k { color: var(--slate); }
+  .region { margin-top: 26px; font-size: .84rem; color: var(--slate); }
+  .region b { color: var(--ink-soft); font-weight: 600; }
+
+  footer { padding: 26px 0 40px; }
+  footer .fin { font-family: var(--mono); font-size: .72rem; color: var(--slate); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <div class="bar-name">张叔阳 <span>AI Application Engineer</span></div>
+    <nav class="bar-nav">
+      <a href="#play">打法</a>
+      <a href="#work">项目</a>
+      <a href="#skills">能力</a>
+      <a href="#bg">背景</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <canvas id="graph"></canvas>
+  <div class="wrap hero-in">
+    <div class="eyebrow">AI 应用工程师 · AI APPLICATION ENGINEER</div>
+    <h1>把大模型<em>编排</em>成能解决真实业务的系统</h1>
+    <p class="lede">
+      我是一名把 AI 用到极致的重度使用者——每天泡在 Claude Code、Cursor、Openclaw 里。
+      这种<b>对模型边界的第一手直觉</b>（它能干什么、会在哪幻觉、怎么编排省 token），
+      是我把它变成可交付系统的底气：<b>无向量 RAG 知识层、LLM-as-Judge 评测流水线、能跑通的 SLAM 与数据管线</b>。
+    </p>
+    <div class="metrics">
+      <div class="metric"><div class="n">41,829,938</div><div class="k">行数据端到端管线</div></div>
+      <div class="metric"><div class="n"><b>475</b>&nbsp;节点</div><div class="k">自动抽取知识图谱</div></div>
+      <div class="metric"><div class="n">ATE&nbsp;<b>2.31</b>m</div><div class="k">真实无人机 SLAM · 100% 跟踪</div></div>
+      <div class="metric"><div class="n">Top&nbsp;<b>14</b>/500+</div><div class="k">美团 AI Hackathon</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- ===== 打法 ===== -->
+  <section id="play">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="dot"></span>
+        <h2>我的打法：从"用得好"到"造得出"</h2>
+        <span class="eyebrow idx">/ 01</span>
+      </div>
+      <div class="play">
+        <div class="step">
+          <div class="node"></div>
+          <div>
+            <h3>会消费 <small>power-use</small></h3>
+            <p>日常深度使用 Claude Code / Cursor / Openclaw 做真实开发与自动化。<b>清楚模型的能力边界和幻觉点</b>——这份边界感，是大多数工程师和产品都缺的。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="node"></div>
+          <div>
+            <h3>会编排 <small>orchestrate</small></h3>
+            <p>不是调一次 API，而是设计"模型怎么被用"：<b>无向量 RAG 的知识层、三跳图检索、LLM-as-Judge 评测、Agent 工具调用契约、token 经济模型</b>。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="node"></div>
+          <div>
+            <h3>会落地 <small>ship</small></h3>
+            <p>交付的都是真东西：<b>4,100 万行数据管线、100% 跟踪率的 SLAM、Top 14/500 的评测系统</b>——都有仓库、有数据、可复现，不是 demo 截图。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 项目 ===== -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="dot"></span>
+        <h2>精选项目</h2>
+        <span class="eyebrow idx">/ 02</span>
+      </div>
+      <div class="grid">
+
+        <!-- P11 -->
+        <article class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span class="code">P11 · cdt-wiki</span>
+            <span class="tag">LLM Agent · 知识层</span>
+          </div>
+          <h3>无向量 RAG 的接口知识库</h3>
+          <p class="desc">为 AI Coding 智能体设计"不靠嵌入猜"的接口知识库——让大模型在上下文里像读地图一样导航索引树、定位接口节点，从源头消除检索噪声与误召回。</p>
+          <ul>
+            <li>从 markdown 自动抽取字段级知识图谱 <b>475</b> 节点 / <b>552</b> 边</li>
+            <li>检索收敛为<b>固定三跳工具链</b>，零向量依赖</li>
+            <li><b>3</b> 层 token 经济模型，系统性压低单次调用成本与延迟</li>
+            <li>构建期完整性校验作质量门 · <b>22</b> 单测全绿</li>
+          </ul>
+          <div class="stack"><span>Python</span><span>FastMCP</span><span>MCP</span><span>知识图谱</span><span>YAML</span></div>
+          <div class="foot">
+            <span class="bridge">→ LLM Agent 知识层 / API 知识工程化 / 检索成本优化</span>
+            <span class="repo na">浪潮实习 · 内部</span>
+          </div>
+        </article>
+
+        <!-- P10 -->
+        <article class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span class="code">P10 · DialAgentEval</span>
+            <span class="tag">LLM-as-Judge</span>
+          </div>
+          <h3>对话智能体自动化评测平台</h3>
+          <p class="desc">一键从 Agent Prompt 生成评测计划、自动判定多轮指令遵循，覆盖完整度 / 鲁棒性 / 安全性三类难题的端到端评测系统。</p>
+          <ul>
+            <li>美团 AI Hackathon <b>500+</b> 队中第 <b>14</b> 名</li>
+            <li>三层流水线：User Simulator / Runner / Grading Engine</li>
+            <li><b>8</b> 规则匹配器 + LLM Judge，输出带证据链评分</li>
+            <li><b>5</b> 维 persona 采样 + 安全红队对抗 + 回归对比</li>
+          </ul>
+          <div class="stack"><span>Python</span><span>FastAPI</span><span>React 18 + TS</span><span>状态机</span></div>
+          <div class="foot">
+            <span class="bridge">→ Agent 评测体系 / 对话质量保障 / AI 可观测性</span>
+            <a class="repo" href="https://github.com/CHANGJianshuo/agent_eval" target="_blank" rel="noopener">↗ github</a>
+          </div>
+        </article>
+
+        <!-- P03 -->
+        <article class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span class="code">P03 · ORB-SLAM3-DJI</span>
+            <span class="tag">视觉 SLAM · C++/ROS</span>
+          </div>
+          <h3>DJI 无人机视觉 SLAM 研究</h3>
+          <p class="desc">在真实 DJI M300 航拍数据上部署 ORB-SLAM3，独立实现 Virtual IMU 解决云台时变外参导致主流 VIO 直接跟丢的难题。独立完成全部代码、实验与评估。</p>
+          <ul>
+            <li>AMtown 单目 VO：ATE <b>2.31</b> m · 跟踪完整度 <b>100%</b>（6,899 帧）</li>
+            <li>独写 <b>3</b> 个原创 ROS C++ 节点 + Virtual IMU 实时外参补偿</li>
+            <li>TUM-VI 基准交叉验证 VIO：ATE <b>0.011</b> m</li>
+            <li>k1 畸变消融揭示单系数导致 <b>46×</b> 轨迹精度变化</li>
+          </ul>
+          <div class="stack"><span>ORB-SLAM3</span><span>C++</span><span>ROS</span><span>OpenCV</span><span>Linux</span><span>evo</span></div>
+          <div class="foot">
+            <span class="bridge">→ 巡检 / AGV / 无人集卡 SLAM · 多传感器融合</span>
+            <a class="repo" href="https://github.com/AfonsoZhang/ORB-SLAM3-DJI-AMtown" target="_blank" rel="noopener">↗ github</a>
+          </div>
+        </article>
+
+        <!-- P01 -->
+        <article class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span class="code">P01 · TLC × eVTOL</span>
+            <span class="tag">数据工程 · 运筹</span>
+          </div>
+          <h3>千万级出行数据 × eVTOL 网络规划</h3>
+          <p class="desc">在 4,100 万行真实出行数据上跑通"清洗 → 聚类 → MILP 选址 → 机队测算"全链路，把原始数据变成成本—产能决策材料。</p>
+          <ul>
+            <li>端到端管线：<b>41,829,938</b> 行 × 20 列 清洗与特征工程</li>
+            <li>K-Means 生成 vertiport 候选点 + 空域约束修正</li>
+            <li>枢纽—辐射 <b>MILP</b> 求解：2 hubs + 5 spokes</li>
+            <li>时间扩展网络流测算最优机队规模 <b>20</b> 架</li>
+          </ul>
+          <div class="stack"><span>Python</span><span>Pandas</span><span>scikit-learn</span><span>PuLP · MILP</span></div>
+          <div class="foot">
+            <span class="bridge">→ 网点选址 / 配送网络 / 产能规划 / 反欺诈选样</span>
+            <span class="repo na">课程研究项目</span>
+          </div>
+        </article>
+
+        <!-- 自建 AI 工作流 — 差异化卡片 -->
+        <article class="card wide">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span class="code">// self-built</span>
+            <span class="tag">AI power-use · 自建 Agent</span>
+          </div>
+          <h3>自建 AI 工作流：把工具用成生产力</h3>
+          <p class="desc">"顶级 AI 消费者"不是口号——我把日常的 AI 使用沉淀成自己的智能体和自动化流水线。这是这份作品集里最能说明"边界感"的一栏。</p>
+          <div class="cols">
+            <ul>
+              <li><b>OpenClaw「本地生活智能管家」</b>参赛作品，含可运行仓库与 B 站演示</li>
+              <li>自建<b>每周求职情报 cloud agent</b>：cron 定时扫描目标岗位、按匹配度自动分级</li>
+            </ul>
+            <ul>
+              <li>日常用 Claude Code / Cursor / Openclaw 做<b>批量 LLM 任务</b>与流水线自动化</li>
+              <li>为代码库搭结构化索引树 / 知识图谱检索，替代向量 RAG</li>
+            </ul>
+          </div>
+          <div class="stack"><span>OpenClaw</span><span>Claude Code</span><span>Cursor</span><span>cron / routine</span></div>
+          <div class="foot">
+            <span class="bridge">→ AI 工程效率 / Agent 编排 / 内部工具建设</span>
+            <a class="repo" href="https://github.com/AfonsoZhang/local-life-butler" target="_blank" rel="noopener">↗ local-life-butler</a>
+          </div>
+        </article>
+
+        <!-- P02 -->
+        <article class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span class="code">P02 · Detection</span>
+            <span class="tag">深度学习 · CV</span>
+          </div>
+          <h3>多模型融合目标检测系统</h3>
+          <p class="desc">PyTorch 下端到端检测 pipeline，量化对比一阶段与两阶段、全量微调与 LoRA 的精度—鲁棒性权衡。</p>
+          <ul>
+            <li>六阶段将检测率 <b>81.8% → 100%</b>（55/55）</li>
+            <li>YOLOv5/8/11 + Faster R-CNN 跨架构融合，IoU=0.3 NMS 控误检</li>
+            <li>LoRA 仅 <b>0.28%</b> 可训练参数，跨域较 COCO 基线 <b>+41%</b></li>
+          </ul>
+          <div class="stack"><span>PyTorch</span><span>Ultralytics</span><span>PEFT · LoRA</span><span>TTA</span></div>
+          <div class="foot">
+            <span class="bridge">→ 缺陷巡检 / 安全行为识别 / 二分类风控</span>
+            <a class="repo" href="https://github.com/AfonsoZhang/Airplane-Detection" target="_blank" rel="noopener">↗ github</a>
+          </div>
+        </article>
+
+        <!-- P09 -->
+        <article class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span class="code">P09 · HK UTM</span>
+            <span class="tag">低空空域 · UTM</span>
+          </div>
+          <h3>香港低空 UTM 空域交通管理</h3>
+          <p class="desc">6 人团队设计完整香港 UTM 架构，个人独立负责供需容量平衡（DCB）工作流，团队展示中由本人主讲此部分。</p>
+          <ul>
+            <li>非齐次泊松过程建模无协调请求 + 优先级准入门</li>
+            <li>独创导航不确定性敏感性分析：σ_nav 升高致吞吐降 <b>30–50%</b></li>
+            <li>参与开发 CesiumJS 三维空域仿真原型</li>
+          </ul>
+          <div class="stack"><span>容量建模</span><span>泊松过程</span><span>CesiumJS</span><span>NASA Case 1</span></div>
+          <div class="foot">
+            <span class="bridge">→ 空域走廊规划 / vertiport 容量测算 / 调度策略</span>
+            <span class="repo na">港理大 AAE5302</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 能力 ===== -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="dot"></span>
+        <h2>能力矩阵</h2>
+        <span class="eyebrow idx">/ 03</span>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <h4>大模型 / 智能体工程</h4>
+          <div class="chips"><span>LLM 应用工程</span><span>Agent 编排与工具调用</span><span>ReAct / LangGraph</span><span>LLM-as-Judge 评测</span><span>提示工程</span><span>安全红队</span><span>LoRA / PEFT</span><span>无向量 RAG · 三跳图检索</span></div>
+        </div>
+        <div class="skill">
+          <h4>数据 / 机器学习</h4>
+          <div class="chips"><span>Python</span><span>Pandas / NumPy</span><span>scikit-learn</span><span>PyTorch</span><span>SQL</span><span>Transformer</span><span>YOLO / Faster R-CNN</span><span>聚类 · 分类 · 回归</span></div>
+        </div>
+        <div class="skill">
+          <h4>Web / 服务与检索</h4>
+          <div class="chips"><span>FastAPI</span><span>React + TypeScript</span><span>Streamlit</span><span>MCP</span><span>SQLite</span><span>ChromaDB</span></div>
+        </div>
+        <div class="skill">
+          <h4>工程 / 部署</h4>
+          <div class="chips"><span>Linux</span><span>C++</span><span>ROS / ROS2</span><span>Git</span><span>开源项目编译部署调试</span><span>系统问题定位</span></div>
+        </div>
+        <div class="skill">
+          <h4>运筹 / 低空</h4>
+          <div class="chips"><span>MILP · PuLP</span><span>遗传算法</span><span>网络选址</span><span>UTM / 空域交通管理</span><span>DCB 供需容量平衡</span><span>eVTOL 运营经济性</span></div>
+        </div>
+        <div class="skill">
+          <h4>语言 / 工具</h4>
+          <div class="chips"><span>雅思 7.0 · 可作工作语言</span><span>Claude Code / Cursor / Openclaw</span><span>Tableau</span><span>Git</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 背景 ===== -->
+  <section id="bg">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="dot"></span>
+        <h2>教育与实习</h2>
+        <span class="eyebrow idx">/ 04</span>
+      </div>
+      <div class="bg-grid">
+        <div class="bg-col">
+          <h4>教育经历</h4>
+          <div class="item">
+            <div class="t">香港理工大学 · 低空经济硕士（MSc）</div>
+            <div class="m">2025.09 – 2027.01（预计） · 工程学院 · 英文授课</div>
+            <div class="d">国内首批面向 eVTOL / 城市无人机 / U-Space 培养的工程硕士，含航空业 AI 应用、视觉 SLAM 与无人机感知等课程。</div>
+          </div>
+          <div class="item">
+            <div class="t">澳门理工大学 · 电子商务学士</div>
+            <div class="m">2021.09 – 2025.08 · GPA 3.20 / 4.00 · 英文授课</div>
+            <div class="d">商业智能、数据库、系统分析与设计、编程导论——商业分析底子叠加工程能力。</div>
+          </div>
+        </div>
+        <div class="bg-col">
+          <h4>实习经历</h4>
+          <div class="item">
+            <div class="t">浪潮数字企业 · AI Coding 智能体开发实习</div>
+            <div class="m">2026.06 – 至今 · 定制开发部</div>
+            <div class="d">构建产品接口知识库 cdt-wiki，设计"树为主、图为辅"混合检索架构与字段级知识图谱管线。</div>
+          </div>
+          <div class="item">
+            <div class="t">中国工商银行 济南分行 · 金融业务实习</div>
+            <div class="m">2024.06 – 2024.07 · 个人/企业金融业务部</div>
+            <div class="d">处理 200+ 客户记录，独立负责片区拆迁补偿款派发项目，办结率 100%。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 联系 ===== -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="eyebrow" style="margin-bottom:18px">让我们聊聊 · GET IN TOUCH</div>
+      <h2>在找 AI 应用 / 全栈方向的岗位与实习</h2>
+      <p class="sub">如果你的团队需要一个"会把大模型真正编排进产品"的人，欢迎联系。</p>
+      <div class="links">
+        <a href="mailto:18763989313@163.com"><span class="k">邮箱</span> 18763989313@163.com</a>
+        <a href="tel:+8618763989313"><span class="k">电话</span> +86 187-6398-9313</a>
+        <a href="https://github.com/AfonsoZhang" target="_blank" rel="noopener"><span class="k">GitHub</span> /AfonsoZhang</a>
+        <a href="https://linkedin.com/in/afonsozhang" target="_blank" rel="noopener"><span class="k">领英</span> /afonsozhang</a>
+      </div>
+      <div class="region">意向地点 &nbsp;<b>香港 · 济南 / 山东 · 北上广深</b>&nbsp;&nbsp;|&nbsp;&nbsp;届别 <b>2027 届</b></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fin">
+    <span>张叔阳 · ZHANG Shuyang</span>
+    <span>本页所有数据均来自可复现的真实项目</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canvas = document.getElementById('graph');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, dpr, nodes = [], edges = [], pulses = [];
+
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function rgba(hex, a){
+    hex = hex.replace('#',''); if(hex.length===3){hex=hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];}
+    var n=parseInt(hex,16); return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';
+  }
+
+  function build() {
+    var rect = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    nodes = []; edges = [];
+    var N = W < 640 ? 16 : 30;
+    for (var i=0;i<N;i++){
+      nodes.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-.5)*0.12, vy: (Math.random()-.5)*0.12,
+        r: Math.random()*1.6 + 1.1
+      });
+    }
+    // connect nearest neighbours
+    for (var a=0;a<nodes.length;a++){
+      var d = [];
+      for (var b=0;b<nodes.length;b++){ if(a===b) continue;
+        var dx=nodes[a].x-nodes[b].x, dy=nodes[a].y-nodes[b].y;
+        d.push({b:b, dist:dx*dx+dy*dy});
+      }
+      d.sort(function(p,q){return p.dist-q.dist;});
+      var k = 2 + (Math.random()*2|0);
+      for (var j=0;j<k;j++){ if(d[j] && a < d[j].b) edges.push({a:a,b:d[j].b}); }
+    }
+  }
+
+  function spawnPulse(){
+    if (edges.length===0) return;
+    var e = edges[(Math.random()*edges.length)|0];
+    pulses.push({e:e, t:0, sp: 0.006 + Math.random()*0.008});
+  }
+
+  var last = 0;
+  function frame(ts){
+    var acc = css('--accent') || '#c86e24';
+    var tr  = css('--trace')  || '#48627a';
+    ctx.clearRect(0,0,W,H);
+
+    // edges
+    ctx.lineWidth = 1;
+    for (var i=0;i<edges.length;i++){
+      var na=nodes[edges[i].a], nb=nodes[edges[i].b];
+      ctx.strokeStyle = rgba(tr, 0.16);
+      ctx.beginPath(); ctx.moveTo(na.x,na.y); ctx.lineTo(nb.x,nb.y); ctx.stroke();
+    }
+    // nodes
+    for (var n=0;n<nodes.length;n++){
+      var nd=nodes[n];
+      if(!reduce){ nd.x+=nd.vx; nd.y+=nd.vy;
+        if(nd.x<0||nd.x>W) nd.vx*=-1; if(nd.y<0||nd.y>H) nd.vy*=-1; }
+      ctx.fillStyle = rgba(tr, 0.5);
+      ctx.beginPath(); ctx.arc(nd.x,nd.y,nd.r,0,6.2832); ctx.fill();
+    }
+    // pulses travelling along edges (the "signal")
+    if(!reduce){
+      if (ts-last > 900 && pulses.length < 6){ spawnPulse(); last = ts; }
+      for (var p=pulses.length-1;p>=0;p--){
+        var pu=pulses[p]; pu.t += pu.sp; if(pu.t>=1){ pulses.splice(p,1); continue; }
+        var ea=nodes[pu.e.a], eb=nodes[pu.e.b];
+        var x=ea.x+(eb.x-ea.x)*pu.t, y=ea.y+(eb.y-ea.y)*pu.t;
+        var glow = Math.sin(pu.t*Math.PI);
+        ctx.fillStyle = rgba(acc, 0.75*glow);
+        ctx.beginPath(); ctx.arc(x,y,2.2,0,6.2832); ctx.fill();
+        ctx.fillStyle = rgba(acc, 0.18*glow);
+        ctx.beginPath(); ctx.arc(x,y,6,0,6.2832); ctx.fill();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  build();
+  if(reduce){
+    // draw one static frame
+    requestAnimationFrame(function(t){ frame(t); });
+  } else {
+    requestAnimationFrame(frame);
+  }
+  var rt;
+  window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(build, 200); });
+})();
+</script>
+</body>
+</html>
