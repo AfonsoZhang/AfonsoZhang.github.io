@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="张叔阳（AI 应用工程师）作品集 · Afonso Zhang — AI Application Engineer portfolio. LLM/Agent、视觉 SLAM、数据工程，均为可复现的真实项目。">
+<meta name="description" content="张叔阳（AI 应用工程师）作品集 · Afonso Zhang — AI Application Engineer portfolio. LLM/Agent、AI 交付知识层、视觉 SLAM、低空空域与数据工程，均为可复现的真实项目。">
 <title>张叔阳 · AI 应用工程师作品集 | Afonso Zhang</title>
 <style>
   :root {
@@ -172,13 +172,13 @@
     <div class="eyebrow" data-i18n="hero.eyebrow">AI 应用工程师 · AI APPLICATION ENGINEER</div>
     <h1 data-i18n="hero.h1">把大模型<em>编排</em>成能解决真实业务的系统</h1>
     <p class="lede" data-i18n="hero.lede">
-      我是一名把 AI 用到极致的重度使用者——每天泡在 Claude Code、Cursor、Openclaw 里。
+      我是一名把 AI 用到极致的深度使用者——每天在 Claude Code、Cursor、Codex 中做真实开发。
       这种<b>对模型边界的第一手直觉</b>（它能干什么、会在哪幻觉、怎么编排省 token），
       是我把它变成可交付系统的底气：<b>无向量 RAG 知识层、LLM-as-Judge 评测流水线、能跑通的 SLAM 与数据管线</b>。
     </p>
     <div class="metrics">
       <div class="metric"><div class="n">41,829,938</div><div class="k" data-i18n="m1.k">行数据端到端管线</div></div>
-      <div class="metric"><div class="n" data-i18n="m2.n"><b>475</b>&nbsp;节点</div><div class="k" data-i18n="m2.k">自动抽取知识图谱</div></div>
+      <div class="metric"><div class="n" data-i18n="m2.n"><b>+41%</b>&nbsp;跨域</div><div class="k" data-i18n="m2.k">LoRA 0.28% 参数 · 视觉迁移</div></div>
       <div class="metric"><div class="n">ATE&nbsp;<b>2.31</b>m</div><div class="k" data-i18n="m3.k">真实无人机 SLAM · 100% 跟踪</div></div>
       <div class="metric"><div class="n">Top&nbsp;<b>14</b>/500+</div><div class="k" data-i18n="m4.k">美团 AI Hackathon</div></div>
     </div>
@@ -198,7 +198,7 @@
           <div class="node"></div>
           <div>
             <h3 data-i18n="s1.h">会消费 <small>power-use</small></h3>
-            <p data-i18n="s1.p">日常深度使用 Claude Code / Cursor / Openclaw 做真实开发与自动化。<b>清楚模型的能力边界和幻觉点</b>——这份边界感，是大多数工程师和产品都缺的。</p>
+            <p data-i18n="s1.p">日常深度使用 Claude Code / Cursor / Codex 做真实开发与自动化。<b>清楚模型的能力边界和幻觉点</b>——这份边界感，是大多数工程师和产品都缺的。</p>
           </div>
         </div>
         <div class="step">
@@ -229,17 +229,17 @@
       <div class="grid">
 
         <article class="card">
-          <div class="chd"><span class="code">P11 · cdt-wiki</span><span class="tag" data-i18n="c11.tag">LLM Agent · 知识层</span></div>
+          <div class="chd"><span class="code">P11 · cdt-wiki</span><span class="tag" data-i18n="c11.tag">AI 交付 · Agent 知识层</span></div>
           <h3 data-i18n="c11.h3">无向量 RAG 的接口知识库</h3>
-          <p class="desc" data-i18n="c11.desc">为 AI Coding 智能体设计"不靠嵌入猜"的接口知识库——让大模型在上下文里像读地图一样导航索引树、定位接口节点，从源头消除检索噪声与误召回。</p>
+          <p class="desc" data-i18n="c11.desc">身处交付中心做产品二次开发，一线感知接口分散、契约不一致的交付痛点；为 AI Coding 智能体构建"不靠嵌入猜"的接口知识库——让大模型在上下文里导航索引树、定位接口节点，从源头消除检索噪声与误召回。</p>
           <ul>
-            <li data-i18n="c11.li1">从 markdown 自动抽取字段级知识图谱 <b>475</b> 节点 / <b>552</b> 边</li>
+            <li data-i18n="c11.li1">从 markdown 自动抽取字段级知识图谱（md 为唯一真源）</li>
             <li data-i18n="c11.li2">检索收敛为<b>固定三跳工具链</b>，零向量依赖</li>
             <li data-i18n="c11.li3"><b>3</b> 层 token 经济模型，系统性压低单次调用成本与延迟</li>
-            <li data-i18n="c11.li4">构建期完整性校验作质量门 · <b>22</b> 单测全绿</li>
+            <li data-i18n="c11.li4">构建期完整性校验作质量门 · 全部单元测试通过</li>
           </ul>
           <div class="stack"><span>Python</span><span>FastMCP</span><span>MCP</span><span>知识图谱</span><span>YAML</span></div>
-          <div class="foot"><span class="bridge" data-i18n="c11.br">→ LLM Agent 知识层 / API 知识工程化 / 检索成本优化</span><span class="repo na" data-i18n="c11.repo">浪潮实习 · 内部</span></div>
+          <div class="foot"><span class="bridge" data-i18n="c11.br">→ AI 交付 / 解决方案 / LLM Agent 知识层 / 检索成本优化</span><span class="repo na" data-i18n="c11.repo">浪潮实习 · 内部</span></div>
         </article>
 
         <article class="card">
@@ -291,7 +291,7 @@
           <div class="cols">
             <ul>
               <li data-i18n="cs.l1"><b>OpenClaw「本地生活智能管家」</b>参赛作品，含可运行仓库与 B 站演示</li>
-              <li data-i18n="cs.l2">日常用 Claude Code / Cursor / Openclaw 做<b>批量 LLM 任务</b>与流水线自动化</li>
+              <li data-i18n="cs.l2">日常用 Claude Code / Cursor / Codex 做<b>批量 LLM 任务</b>与流水线自动化</li>
             </ul>
             <ul>
               <li data-i18n="cs.l3">为代码库搭结构化索引树 / 知识图谱检索，替代向量 RAG</li>
@@ -362,7 +362,7 @@
         </div>
         <div class="skill">
           <h4 data-i18n="sk6.h">语言 / 工具</h4>
-          <div class="chips" data-i18n="sk6.c"><span>雅思 7.0 · 可作工作语言</span><span>Claude Code / Cursor / Openclaw</span><span>Tableau</span><span>Git</span></div>
+          <div class="chips" data-i18n="sk6.c"><span>雅思 7.0 · 可作工作语言</span><span>Claude Code / Cursor / Codex</span><span>Tableau</span><span>Git</span></div>
         </div>
       </div>
     </div>
@@ -392,9 +392,9 @@
         <div class="bg-col">
           <h4 data-i18n="bg.exp">实习经历</h4>
           <div class="item">
-            <div class="t" data-i18n="x1.t">浪潮数字企业 · AI Coding 智能体开发实习</div>
-            <div class="m" data-i18n="x1.m">2026.06 – 至今 · 定制开发部</div>
-            <div class="d" data-i18n="x1.d">构建产品接口知识库 cdt-wiki，设计"树为主、图为辅"混合检索架构与字段级知识图谱管线。</div>
+            <div class="t" data-i18n="x1.t">浪潮数字企业 · 交付中心 · AI Coding 智能体开发实习</div>
+            <div class="m" data-i18n="x1.m">2026.06 – 至今 · 交付中心 · 定制开发部</div>
+            <div class="d" data-i18n="x1.d">部门主责产品二次开发（二开）；构建产品接口知识库 cdt-wiki，设计"树为主、图为辅"混合检索架构，把大模型用于提升交付效率。</div>
           </div>
           <div class="item">
             <div class="t" data-i18n="x2.t">中国工商银行 济南分行 · 金融业务实习</div>
@@ -409,15 +409,15 @@
   <section class="contact" id="contact">
     <div class="wrap">
       <div class="eyebrow" style="margin-bottom:18px" data-i18n="ct.eyebrow">让我们聊聊 · GET IN TOUCH</div>
-      <h2 data-i18n="ct.h2">在找 AI 应用 / 全栈方向的岗位与实习</h2>
-      <p class="sub" data-i18n="ct.sub">如果你的团队需要一个"会把大模型真正编排进产品"的人，欢迎联系。</p>
+      <h2 data-i18n="ct.h2">在找 AI 应用 / AI 产品 / AI 交付 / 低空方向的岗位与实习</h2>
+      <p class="sub" data-i18n="ct.sub">如果你的团队需要一个既懂业务、又能把大模型真正编排进产品与交付的人，欢迎联系。</p>
       <div class="links">
         <a href="mailto:18763989313@163.com"><span class="k" data-i18n="ct.email">邮箱</span> 18763989313@163.com</a>
         <a href="tel:+8618763989313"><span class="k" data-i18n="ct.phone">电话</span> +86 187-6398-9313</a>
         <a href="https://github.com/AfonsoZhang" target="_blank" rel="noopener"><span class="k">GitHub</span> /AfonsoZhang</a>
         <a href="https://linkedin.com/in/afonsozhang" target="_blank" rel="noopener"><span class="k">LinkedIn</span> /afonsozhang</a>
       </div>
-      <div class="region" data-i18n="ct.region">意向地点 &nbsp;<b>香港 · 济南 / 山东 · 北上广深</b>&nbsp;&nbsp;|&nbsp;&nbsp;届别 <b>2027 届</b></div>
+      <div class="region" data-i18n="ct.region">意向地点 &nbsp;<b>深圳 / 大湾区优先 · 香港 · 济南 / 山东 · 北上广</b>&nbsp;&nbsp;|&nbsp;&nbsp;届别 <b>2027 届</b></div>
     </div>
   </section>
 </main>
@@ -436,27 +436,27 @@
     "nav.play":"Playbook","nav.work":"Work","nav.skills":"Skills","nav.bg":"Background","nav.contact":"Contact",
     "hero.eyebrow":"AI APPLICATION ENGINEER",
     "hero.h1":"I <em>orchestrate</em> LLMs into systems that solve real business problems",
-    "hero.lede":"I'm a power-user who pushes AI to its limits — living in Claude Code, Cursor and Openclaw every day. That <b>first-hand feel for where models excel and where they hallucinate</b>, and how to orchestrate them cheaply on tokens, is what lets me turn them into shippable systems: <b>vector-free RAG knowledge layers, LLM-as-Judge evaluation pipelines, and SLAM &amp; data pipelines that actually run</b>.",
+    "hero.lede":"I'm a power-user who pushes AI to its limits — working in Claude Code, Cursor and Codex every day. That <b>first-hand feel for where models excel and where they hallucinate</b>, and how to orchestrate them cheaply on tokens, is what lets me turn them into shippable systems: <b>vector-free RAG knowledge layers, LLM-as-Judge evaluation pipelines, and SLAM &amp; data pipelines that actually run</b>.",
     "m1.k":"rows · end-to-end pipeline",
-    "m2.n":"<b>475</b>&nbsp;nodes","m2.k":"auto-extracted knowledge graph",
+    "m2.n":"<b>+41%</b>&nbsp;cross-domain","m2.k":"LoRA, 0.28% params · vision transfer",
     "m3.k":"real-drone SLAM · 100% tracking",
     "m4.k":"Meituan AI Hackathon",
     "play.h2":"How I work — from power-user to builder",
     "s1.h":"Consume <small>power-use</small>",
-    "s1.p":"I use Claude Code / Cursor / Openclaw daily for real development and automation, and I <b>know exactly where models are capable and where they hallucinate</b> — a sense of the boundary most engineers and PMs lack.",
+    "s1.p":"I use Claude Code / Cursor / Codex daily for real development and automation, and I <b>know exactly where models are capable and where they hallucinate</b> — a sense of the boundary most engineers and PMs lack.",
     "s2.h":"Orchestrate <small>orchestrate</small>",
     "s2.p":"Not a one-off API call, but designing <b>how</b> a model gets used: <b>vector-free RAG knowledge layers, three-hop graph retrieval, LLM-as-Judge evaluation, agent tool-calling contracts, token economics</b>.",
     "s3.h":"Ship <small>ship</small>",
     "s3.p":"Everything I deliver is real: a <b>41-million-row data pipeline, a SLAM system with 100% tracking, an evaluation platform ranked Top 14/500</b> — all with public repos, real data, reproducible.",
     "work.h2":"Selected Work",
-    "c11.tag":"LLM Agent · Knowledge layer",
+    "c11.tag":"AI delivery · Agent knowledge layer",
     "c11.h3":"Vector-free RAG knowledge base for APIs",
-    "c11.desc":"A knowledge base that doesn't “guess by embedding” — the model navigates an index tree in-context to locate API nodes, killing retrieval noise and false recalls at the source.",
-    "c11.li1":"Field-level knowledge graph auto-extracted from markdown: <b>475</b> nodes / <b>552</b> edges",
+    "c11.desc":"Working in a delivery / customization team, I feel first-hand the pain of scattered, inconsistent API contracts; I build a knowledge base that doesn't “guess by embedding” — the model navigates an index tree in-context to locate API nodes, killing retrieval noise and false recalls at the source.",
+    "c11.li1":"Field-level knowledge graph auto-extracted from markdown (single source of truth)",
     "c11.li2":"Retrieval reduced to a <b>fixed three-hop</b> tool chain, zero vector dependency",
     "c11.li3":"<b>3</b>-layer token-economy model, systematically cutting per-call cost and latency",
-    "c11.li4":"Build-time integrity checks as a quality gate · <b>22</b> unit tests green",
-    "c11.br":"→ LLM agent knowledge layers / API knowledge engineering / retrieval cost",
+    "c11.li4":"Build-time integrity checks as a quality gate · all unit tests green",
+    "c11.br":"→ AI delivery / solutions / LLM agent knowledge layers / retrieval cost",
     "c11.repo":"Inspur internship · internal",
     "c10.h3":"Automated evaluation platform for dialogue agents",
     "c10.desc":"One click turns an agent prompt into an evaluation plan and auto-judges multi-turn instruction-following — completeness, robustness and safety, end to end.",
@@ -486,7 +486,7 @@
     "cs.h3":"Self-built AI workflows: tools as leverage",
     "cs.desc":"“Top AI consumer” isn't a slogan — I distill daily AI use into my own agents and automation pipelines. This is the entry that best shows the boundary sense.",
     "cs.l1":"<b>OpenClaw local-life butler</b> competition entry, with a runnable repo and a Bilibili demo",
-    "cs.l2":"Daily <b>batch LLM jobs</b> and pipeline automation with Claude Code / Cursor / Openclaw",
+    "cs.l2":"Daily <b>batch LLM jobs</b> and pipeline automation with Claude Code / Cursor / Codex",
     "cs.l3":"Structured index trees / graph retrieval over codebases as a vector-RAG alternative",
     "cs.l4":"Hands-on experience building AI agents and automation workflows",
     "cs.br":"→ AI engineering efficiency / agent orchestration / internal tooling",
@@ -517,7 +517,7 @@
     "sk5.h":"Optimization / Low-altitude",
     "sk5.c":"<span>MILP · PuLP</span><span>Genetic algorithms</span><span>Network siting</span><span>UTM / airspace management</span><span>DCB capacity balancing</span><span>eVTOL operations economics</span>",
     "sk6.h":"Languages / Tools",
-    "sk6.c":"<span>IELTS 7.0 · working proficiency</span><span>Claude Code / Cursor / Openclaw</span><span>Tableau</span><span>Git</span>",
+    "sk6.c":"<span>IELTS 7.0 · working proficiency</span><span>Claude Code / Cursor / Codex</span><span>Tableau</span><span>Git</span>",
     "bg.h2":"Education &amp; Experience",
     "bg.edu":"Education","bg.exp":"Experience",
     "e1.t":"Hong Kong PolyU · MSc Low-Altitude Economy",
@@ -526,17 +526,17 @@
     "e2.t":"Macao Polytechnic University · BSc E-commerce",
     "e2.m":"2021.09 – 2025.08 · GPA 3.20 / 4.00 · English-taught",
     "e2.d":"Business intelligence, databases, systems analysis &amp; design, intro to programming — a business-analytics base layered with engineering.",
-    "x1.t":"Inspur Digital Enterprise · AI Coding agent dev intern",
-    "x1.m":"2026.06 – present · Custom Development",
-    "x1.d":"Built the cdt-wiki API knowledge base; designed a tree-primary, graph-secondary hybrid retrieval architecture and a field-level knowledge-graph pipeline.",
+    "x1.t":"Inspur Digital Enterprise · Delivery Center · AI Coding agent intern",
+    "x1.m":"2026.06 – present · Delivery Center · Custom Development",
+    "x1.d":"The team focuses on product secondary development (customization); I built the cdt-wiki API knowledge base with a tree-primary, graph-secondary hybrid retrieval architecture, applying LLMs to improve delivery efficiency.",
     "x2.t":"ICBC, Jinan Branch · Banking intern",
     "x2.m":"2024.06 – 2024.07 · Personal / Corporate Banking",
     "x2.d":"Processed 200+ client records; independently ran a district compensation-disbursement project with a 100% completion rate.",
     "ct.eyebrow":"GET IN TOUCH",
-    "ct.h2":"Open to AI application / full-stack roles &amp; internships",
-    "ct.sub":"If your team needs someone who can actually orchestrate LLMs into a product, let's talk.",
+    "ct.h2":"Open to AI application / product / delivery / low-altitude roles &amp; internships",
+    "ct.sub":"If your team needs someone who understands the business and can actually orchestrate LLMs into products and delivery, let's talk.",
     "ct.email":"Email","ct.phone":"Phone",
-    "ct.region":"Locations &nbsp;<b>Hong Kong · Jinan / Shandong · Beijing / Shanghai / Guangzhou / Shenzhen</b>&nbsp;&nbsp;|&nbsp;&nbsp;<b>Class of 2027</b>",
+    "ct.region":"Locations &nbsp;<b>Shenzhen / Greater Bay Area first · Hong Kong · Jinan / Shandong · Beijing / Shanghai / Guangzhou</b>&nbsp;&nbsp;|&nbsp;&nbsp;<b>Class of 2027</b>",
     "foot":"All figures come from reproducible, real projects"
   };
 
