@@ -177,7 +177,7 @@
       是我把它变成可交付系统的底气：<b>无向量 RAG 知识层、LLM-as-Judge 评测流水线、能跑通的 SLAM 与数据管线</b>。
     </p>
     <div class="metrics">
-      <div class="metric"><div class="n">41,829,938</div><div class="k" data-i18n="m1.k">行数据端到端管线</div></div>
+      <div class="metric"><div class="n">TOP30</div><div class="k" data-i18n="m1.k">美团校园 2026 AI Hackathon 获奖</div></div>
       <div class="metric"><div class="n" data-i18n="m2.n"><b>+41%</b>&nbsp;跨域</div><div class="k" data-i18n="m2.k">LoRA 0.28% 参数 · 视觉迁移</div></div>
       <div class="metric"><div class="n">ATE&nbsp;<b>2.31</b>m</div><div class="k" data-i18n="m3.k">真实无人机 SLAM · 100% 跟踪</div></div>
       <div class="metric"><div class="n">Top&nbsp;<b>14</b>/500+</div><div class="k" data-i18n="m4.k">美团 AI Hackathon</div></div>
@@ -212,7 +212,7 @@
           <div class="node"></div>
           <div>
             <h3 data-i18n="s3.h">会落地 <small>ship</small></h3>
-            <p data-i18n="s3.p">交付的都是真东西：<b>4,100 万行数据管线、100% 跟踪率的 SLAM、Top 14/500 的评测系统</b>——都有仓库、有数据、可复现，不是 demo 截图。</p>
+            <p data-i18n="s3.p">通过项目代码、实验记录与交付材料展示工作：<b>Agent 评测、无人机视觉里程计与业务知识检索</b>，分别说明个人贡献、验证环境和结果适用范围。</p>
           </div>
         </div>
       </div>
@@ -229,25 +229,25 @@
       <div class="grid">
 
         <article class="card">
-          <div class="chd"><span class="code">P11 · cdt-wiki</span><span class="tag" data-i18n="c11.tag">AI 交付 · Agent 知识层</span></div>
+          <div class="chd"><span class="code">cdt-wiki</span><span class="tag" data-i18n="c11.tag">AI 交付 · Agent 知识层</span></div>
           <h3 data-i18n="c11.h3">无向量 RAG 的接口知识库</h3>
-          <p class="desc" data-i18n="c11.desc">身处交付中心做产品二次开发，一线感知接口分散、契约不一致的交付痛点；为 AI Coding 智能体构建"不靠嵌入猜"的接口知识库——让大模型在上下文里导航索引树、定位接口节点，从源头消除检索噪声与误召回。</p>
+          <p class="desc" data-i18n="c11.desc">浪潮交付中心实习期间，为 AI Coding 智能体构建产品接口知识库：以结构化索引树定位文档，知识图谱补充跨文档关联，通过 MCP 按需读取原文。</p>
           <ul>
             <li data-i18n="c11.li1">从 markdown 自动抽取字段级知识图谱（md 为唯一真源）</li>
-            <li data-i18n="c11.li2">检索收敛为<b>固定三跳工具链</b>，零向量依赖</li>
-            <li data-i18n="c11.li3"><b>3</b> 层 token 经济模型，系统性压低单次调用成本与延迟</li>
-            <li data-i18n="c11.li4">构建期完整性校验作质量门 · 全部单元测试通过</li>
+            <li data-i18n="c11.li2">树为主、图为辅；关联结果可直接定位到文档章节</li>
+            <li data-i18n="c11.li3"><b>3</b> 层 token 经济模型，约束导航、内容读取与服务端遍历</li>
+            <li data-i18n="c11.li4">隔离检索 worker；在下游门禁中校验检索台账与原文逐字锚</li>
           </ul>
           <div class="stack"><span>Python</span><span>FastMCP</span><span>MCP</span><span>知识图谱</span><span>YAML</span></div>
           <div class="foot"><span class="bridge" data-i18n="c11.br">→ AI 交付 / 解决方案 / LLM Agent 知识层 / 检索成本优化</span><span class="repo na" data-i18n="c11.repo">浪潮实习 · 内部</span></div>
         </article>
 
         <article class="card">
-          <div class="chd"><span class="code">P10 · DialAgentEval</span><span class="tag">LLM-as-Judge</span></div>
+          <div class="chd"><span class="code">DialAgentEval</span><span class="tag">LLM-as-Judge</span></div>
           <h3 data-i18n="c10.h3">对话智能体自动化评测平台</h3>
           <p class="desc" data-i18n="c10.desc">一键从 Agent Prompt 生成评测计划、自动判定多轮指令遵循，覆盖完整度 / 鲁棒性 / 安全性三类难题的端到端评测系统。</p>
           <ul>
-            <li data-i18n="c10.li1">美团 AI Hackathon <b>500+</b> 队中第 <b>14</b> 名</li>
+            <li data-i18n="c10.li1">美团校园 2026 AI Hackathon <b>TOP30 获奖</b>；<b>500+</b> 队总排名第 <b>14</b></li>
             <li data-i18n="c10.li2">三层流水线：User Simulator / Runner / Grading Engine</li>
             <li data-i18n="c10.li3"><b>8</b> 规则匹配器 + LLM Judge，输出带证据链评分</li>
             <li data-i18n="c10.li4"><b>5</b> 维 persona 采样 + 安全红队对抗 + 回归对比</li>
@@ -259,7 +259,7 @@
         <article class="card">
           <div class="chd"><span class="code">P03 · ORB-SLAM3-DJI</span><span class="tag" data-i18n="c03.tag">视觉 SLAM · C++/ROS</span></div>
           <h3 data-i18n="c03.h3">DJI 无人机视觉 SLAM 研究</h3>
-          <p class="desc" data-i18n="c03.desc">在真实 DJI M300 航拍数据上部署 ORB-SLAM3，独立实现 Virtual IMU 解决云台时变外参导致主流 VIO 直接跟丢的难题。独立完成全部代码、实验与评估。</p>
+          <p class="desc" data-i18n="c03.desc">在真实 DJI M300 航拍数据上跑通 ORB-SLAM3 单目视觉里程计，分析标定与云台时变外参的影响，并独立实现 Virtual IMU。目标航拍数据上的 VIO 仍未成功跟踪。</p>
           <ul>
             <li data-i18n="c03.li1">AMtown 单目 VO：ATE <b>2.31</b> m · 跟踪完整度 <b>100%</b>（6,899 帧）</li>
             <li data-i18n="c03.li2">独写 <b>3</b> 个原创 ROS C++ 节点 + Virtual IMU 实时外参补偿</li>
@@ -272,16 +272,16 @@
 
         <article class="card">
           <div class="chd"><span class="code">P01 · TLC × eVTOL</span><span class="tag" data-i18n="c01.tag">数据工程 · 运筹</span></div>
-          <h3 data-i18n="c01.h3">千万级出行数据 × eVTOL 网络规划</h3>
-          <p class="desc" data-i18n="c01.desc">在 4,100 万行真实出行数据上跑通"清洗 → 聚类 → MILP 选址 → 机队测算"全链路，把原始数据变成成本—产能决策材料。</p>
+          <h3 data-i18n="c01.h3">出行需求分析与 eVTOL 网络规划</h3>
+          <p class="desc" data-i18n="c01.desc">基于 NYC TLC 出行数据的课程项目，结合需求分析、站点选址、机队测算与敏感性分析，探索低空交通服务的运营规划。</p>
           <ul>
-            <li data-i18n="c01.li1">端到端管线：<b>41,829,938</b> 行 × 20 列 清洗与特征工程</li>
+            <li data-i18n="c01.li1">清洗出行记录，构建时段需求与 OD 分布</li>
             <li data-i18n="c01.li2">K-Means 生成 vertiport 候选点 + 空域约束修正</li>
-            <li data-i18n="c01.li3">枢纽—辐射 <b>MILP</b> 求解：2 hubs + 5 spokes</li>
-            <li data-i18n="c01.li4">时间扩展网络流测算最优机队规模 <b>20</b> 架</li>
+            <li data-i18n="c01.li3">用 <b>MILP</b> 建模枢纽—辐射选址问题</li>
+            <li data-i18n="c01.li4">时间扩展网络流测算机队需求，比较成本、票价与需求假设</li>
           </ul>
           <div class="stack"><span>Python</span><span>Pandas</span><span>scikit-learn</span><span>PuLP · MILP</span></div>
-          <div class="foot"><span class="bridge" data-i18n="c01.br">→ 网点选址 / 配送网络 / 产能规划 / 反欺诈选样</span><span class="repo na" data-i18n="c01.repo">课程研究项目</span></div>
+          <div class="foot"><span class="bridge" data-i18n="c01.br">课程项目 · 需求分析 / 网络规划</span><a class="repo" href="https://github.com/AfonsoZhang/AAE5301_eVTOL_Reproduction" target="_blank" rel="noopener" data-i18n="c01.repo">复现与审计</a></div>
         </article>
 
         <article class="card wide">
@@ -290,7 +290,7 @@
           <p class="desc" data-i18n="cs.desc">"顶级 AI 消费者"不是口号——我把日常的 AI 使用沉淀成自己的智能体和自动化流水线。这是这份作品集里最能说明"边界感"的一栏。</p>
           <div class="cols">
             <ul>
-              <li data-i18n="cs.l1"><b>OpenClaw「本地生活智能管家」</b>参赛作品，含可运行仓库与 B 站演示</li>
+              <li data-i18n="cs.l1"><b>OpenClaw「本地生活智能管家」</b>参赛作品，仓库包含技能契约与一致性检查</li>
               <li data-i18n="cs.l2">日常用 Claude Code / Cursor / Codex 做<b>批量 LLM 任务</b>与流水线自动化</li>
             </ul>
             <ul>
@@ -380,7 +380,7 @@
           <h4 data-i18n="bg.edu">教育经历</h4>
           <div class="item">
             <div class="t" data-i18n="e1.t">香港理工大学 · 低空经济硕士（MSc）</div>
-            <div class="m" data-i18n="e1.m">2025.09 – 2027.01（预计） · 工程学院 · 英文授课</div>
+            <div class="m" data-i18n="e1.m">2025.09 – 2027.01（预计） · GPA 3.69 · 英文授课</div>
             <div class="d" data-i18n="e1.d">国内首批面向 eVTOL / 城市无人机 / U-Space 培养的工程硕士，含航空业 AI 应用、视觉 SLAM 与无人机感知等课程。</div>
           </div>
           <div class="item">
@@ -392,8 +392,8 @@
         <div class="bg-col">
           <h4 data-i18n="bg.exp">实习经历</h4>
           <div class="item">
-            <div class="t" data-i18n="x1.t">浪潮数字企业 · 交付中心 · AI Coding 智能体开发实习</div>
-            <div class="m" data-i18n="x1.m">2026.06 – 至今 · 交付中心 · 定制开发部</div>
+            <div class="t" data-i18n="x1.t">浪潮数字企业 · 应用软件开发实习生</div>
+            <div class="m" data-i18n="x1.m">2026.06 – 2026.08 · 交付中心 · 定制开发部</div>
             <div class="d" data-i18n="x1.d">部门主责产品二次开发（二开）；构建产品接口知识库 cdt-wiki，设计"树为主、图为辅"混合检索架构，把大模型用于提升交付效率。</div>
           </div>
           <div class="item">
@@ -437,7 +437,7 @@
     "hero.eyebrow":"AI APPLICATION ENGINEER",
     "hero.h1":"I <em>orchestrate</em> LLMs into systems that solve real business problems",
     "hero.lede":"I'm a power-user who pushes AI to its limits — working in Claude Code, Cursor and Codex every day. That <b>first-hand feel for where models excel and where they hallucinate</b>, and how to orchestrate them cheaply on tokens, is what lets me turn them into shippable systems: <b>vector-free RAG knowledge layers, LLM-as-Judge evaluation pipelines, and SLAM &amp; data pipelines that actually run</b>.",
-    "m1.k":"rows · end-to-end pipeline",
+    "m1.k":"Meituan Campus 2026 AI Hackathon award",
     "m2.n":"<b>+41%</b>&nbsp;cross-domain","m2.k":"LoRA, 0.28% params · vision transfer",
     "m3.k":"real-drone SLAM · 100% tracking",
     "m4.k":"Meituan AI Hackathon",
@@ -447,45 +447,45 @@
     "s2.h":"Orchestrate <small>orchestrate</small>",
     "s2.p":"Not a one-off API call, but designing <b>how</b> a model gets used: <b>vector-free RAG knowledge layers, three-hop graph retrieval, LLM-as-Judge evaluation, agent tool-calling contracts, token economics</b>.",
     "s3.h":"Ship <small>ship</small>",
-    "s3.p":"Everything I deliver is real: a <b>41-million-row data pipeline, a SLAM system with 100% tracking, an evaluation platform ranked Top 14/500</b> — all with public repos, real data, reproducible.",
+    "s3.p":"I document <b>agent evaluation, drone visual odometry and business knowledge retrieval</b> through code, experiment records and delivery materials, with explicit contributions, validation settings and limits.",
     "work.h2":"Selected Work",
     "c11.tag":"AI delivery · Agent knowledge layer",
     "c11.h3":"Vector-free RAG knowledge base for APIs",
-    "c11.desc":"Working in a delivery / customization team, I feel first-hand the pain of scattered, inconsistent API contracts; I build a knowledge base that doesn't “guess by embedding” — the model navigates an index tree in-context to locate API nodes, killing retrieval noise and false recalls at the source.",
+    "c11.desc":"Built an API knowledge base for AI coding agents during my Inspur Delivery Center internship: a structured index tree locates documents, a knowledge graph adds cross-document relationships, and MCP tools retrieve source text on demand.",
     "c11.li1":"Field-level knowledge graph auto-extracted from markdown (single source of truth)",
-    "c11.li2":"Retrieval reduced to a <b>fixed three-hop</b> tool chain, zero vector dependency",
-    "c11.li3":"<b>3</b>-layer token-economy model, systematically cutting per-call cost and latency",
-    "c11.li4":"Build-time integrity checks as a quality gate · all unit tests green",
+    "c11.li2":"Tree-first retrieval with graph assistance; related results resolve to document sections",
+    "c11.li3":"<b>3</b>-layer token model bounds navigation, content reads and server-side traversal",
+    "c11.li4":"Isolated retrieval worker; downstream checks against retrieval logs and verbatim source anchors",
     "c11.br":"→ AI delivery / solutions / LLM agent knowledge layers / retrieval cost",
     "c11.repo":"Inspur internship · internal",
     "c10.h3":"Automated evaluation platform for dialogue agents",
     "c10.desc":"One click turns an agent prompt into an evaluation plan and auto-judges multi-turn instruction-following — completeness, robustness and safety, end to end.",
-    "c10.li1":"Ranked <b>14</b>th of <b>500+</b> teams at the Meituan AI Hackathon",
+    "c10.li1":"<b>TOP30 award</b>, Meituan Campus 2026 AI Hackathon; ranked <b>14</b>th overall among <b>500+</b> teams",
     "c10.li2":"Three-layer pipeline: User Simulator / Runner / Grading Engine",
     "c10.li3":"<b>8</b> rule matchers + LLM Judge, evidence-linked scoring",
     "c10.li4":"<b>5</b>-dimension persona sampling + safety red-teaming + regression diffs",
     "c10.br":"→ Agent evaluation / dialogue QA / AI observability",
     "c03.tag":"Visual SLAM · C++/ROS",
     "c03.h3":"Visual SLAM on DJI drone imagery",
-    "c03.desc":"Deployed ORB-SLAM3 on real DJI M300 aerial data and independently built a Virtual IMU to solve the time-varying gimbal extrinsics that make mainstream VIO lose tracking. Solo end-to-end: all code, experiments and evaluation.",
+    "c03.desc":"Ran ORB-SLAM3 monocular visual odometry on real DJI M300 imagery, studied calibration and time-varying gimbal extrinsics, and independently implemented a Virtual IMU. VIO still fails to track on the target aerial dataset.",
     "c03.li1":"AMtown monocular VO: ATE <b>2.31</b> m · tracking completeness <b>100%</b> (6,899 frames)",
     "c03.li2":"Wrote <b>3</b> original ROS C++ nodes + real-time Virtual IMU extrinsics compensation",
     "c03.li3":"Cross-validated VIO on the TUM-VI benchmark: ATE <b>0.011</b> m",
     "c03.li4":"k1 distortion ablation shows one coefficient drives a <b>46×</b> trajectory-accuracy change",
     "c03.br":"→ Inspection / AGV / autonomous-truck SLAM · sensor fusion",
     "c01.tag":"Data engineering · Optimization",
-    "c01.h3":"40M-row mobility data × eVTOL network planning",
-    "c01.desc":"Ran a full “clean → cluster → MILP siting → fleet sizing” pipeline over 41 million rows of real mobility data, turning raw data into cost-and-capacity decisions.",
-    "c01.li1":"End-to-end pipeline: <b>41,829,938</b> rows × 20 cols cleaned &amp; feature-engineered",
+    "c01.h3":"Travel demand and eVTOL network planning",
+    "c01.desc":"A course project using NYC TLC mobility data to explore low-altitude transport operations through demand analysis, site selection, fleet sizing and sensitivity analysis.",
+    "c01.li1":"Cleaned trip records and constructed time-of-day demand and OD distributions",
     "c01.li2":"K-Means generates vertiport candidates + airspace-constraint correction",
-    "c01.li3":"Hub-and-spoke <b>MILP</b> solve: 2 hubs + 5 spokes",
-    "c01.li4":"Time-expanded network flow sizes the optimal fleet at <b>20</b> aircraft",
-    "c01.br":"→ Site selection / delivery networks / capacity planning / fraud sampling",
-    "c01.repo":"Course research project",
+    "c01.li3":"<b>MILP</b> formulation for hub-and-spoke site selection",
+    "c01.li4":"Time-expanded network flow for fleet demand; comparisons across cost, fare and demand assumptions",
+    "c01.br":"Course project · Demand analysis / Network planning",
+    "c01.repo":"Reproduction &amp; audit",
     "cs.tag":"AI power-use · self-built agents",
     "cs.h3":"Self-built AI workflows: tools as leverage",
     "cs.desc":"“Top AI consumer” isn't a slogan — I distill daily AI use into my own agents and automation pipelines. This is the entry that best shows the boundary sense.",
-    "cs.l1":"<b>OpenClaw local-life butler</b> competition entry, with a runnable repo and a Bilibili demo",
+    "cs.l1":"<b>OpenClaw local-life butler</b> competition entry, with skill contracts and consistency checks in the repository",
     "cs.l2":"Daily <b>batch LLM jobs</b> and pipeline automation with Claude Code / Cursor / Codex",
     "cs.l3":"Structured index trees / graph retrieval over codebases as a vector-RAG alternative",
     "cs.l4":"Hands-on experience building AI agents and automation workflows",
@@ -521,13 +521,13 @@
     "bg.h2":"Education &amp; Experience",
     "bg.edu":"Education","bg.exp":"Experience",
     "e1.t":"Hong Kong PolyU · MSc Low-Altitude Economy",
-    "e1.m":"2025.09 – 2027.01 (expected) · Faculty of Engineering · English-taught",
+    "e1.m":"2025.09 – 2027.01 (expected) · GPA 3.69 · English-taught",
     "e1.d":"One of China's first engineering master's programs for eVTOL / urban drones / U-Space; courses in aviation AI, visual SLAM and drone perception.",
-    "e2.t":"Macao Polytechnic University · BSc E-commerce",
+    "e2.t":"Macao Polytechnic University · Bachelor of E-commerce",
     "e2.m":"2021.09 – 2025.08 · GPA 3.20 / 4.00 · English-taught",
     "e2.d":"Business intelligence, databases, systems analysis &amp; design, intro to programming — a business-analytics base layered with engineering.",
-    "x1.t":"Inspur Digital Enterprise · Delivery Center · AI Coding agent intern",
-    "x1.m":"2026.06 – present · Delivery Center · Custom Development",
+    "x1.t":"Inspur Digital Enterprise · Application Software Development Intern",
+    "x1.m":"2026.06 – 2026.08 · Delivery Center · Custom Development",
     "x1.d":"The team focuses on product secondary development (customization); I built the cdt-wiki API knowledge base with a tree-primary, graph-secondary hybrid retrieval architecture, applying LLMs to improve delivery efficiency.",
     "x2.t":"ICBC, Jinan Branch · Banking intern",
     "x2.m":"2024.06 – 2024.07 · Personal / Corporate Banking",
